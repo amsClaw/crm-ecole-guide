@@ -388,6 +388,20 @@
               <li>Double-cliquer sur <code>LANCER_CRM_MAC.command</code>.</li>
               <li>Le navigateur s'ouvre sur l'adresse locale du CRM.</li>
             </ol>
+            <p>Pour permettre aux autres appareils du meme reseau local d'utiliser le CRM, lancer plutot <code>LANCER_CRM_RESEAU_MAC.command</code> sur le Mac serveur et utiliser l'adresse affichee.</p>
+
+            <h3>Depuis un telephone, une tablette ou un autre ordinateur</h3>
+            <ol>
+              <li>Connecter l'appareil au meme Wi-Fi que la machine serveur.</li>
+              <li>Lancer le CRM avec le script reseau sur la machine serveur.</li>
+              <li>Reperer l'adresse affichee pour les autres appareils, par exemple <code>http://192.168.1.25:8791</code>.</li>
+              <li>Ouvrir cette adresse dans Safari, Chrome ou le navigateur de l'appareil.</li>
+              <li>Se connecter avec un compte autorise.</li>
+            </ol>
+            <div class="box warning">
+              <strong>Adresse a utiliser</strong>
+              <p>Depuis un autre appareil, ne pas utiliser <code>http://127.0.0.1:8791</code>. Cette adresse fonctionne uniquement sur la machine serveur. Il faut utiliser l'adresse reseau affichee par le script, generalement sous la forme <code>http://192.168.x.x:8791</code>.</p>
+            </div>
 
             <h3>Sur Windows</h3>
             <ol>
@@ -396,10 +410,11 @@
               <li>Double-cliquer sur <code>LANCER_CRM_WINDOWS.bat</code>.</li>
               <li>Le navigateur s'ouvre sur l'adresse locale du CRM.</li>
             </ol>
+            <p>Pour permettre aux autres appareils du meme reseau local d'utiliser le CRM, lancer plutot <code>LANCER_CRM_RESEAU_WINDOWS.bat</code> sur le PC serveur et utiliser l'adresse affichee.</p>
 
             <div class="box warning">
               <strong>Important</strong>
-              <p>Il faut laisser la fenetre Terminal ou Invite de commande ouverte pendant l'utilisation du CRM. Si cette fenetre est fermee, le CRM peut s'arreter.</p>
+              <p>Il faut laisser la fenetre Terminal ou Invite de commande ouverte pendant l'utilisation du CRM. Si cette fenetre est fermee, le CRM peut s'arreter. Le mode reseau local doit rester limite au reseau de l'ecole et ne doit pas etre expose sur Internet.</p>
             </div>
           </section>
 
@@ -418,7 +433,7 @@
 
           <section id="roles">
             <h2>Roles utilisateurs</h2>
-            <p>Chaque utilisateur a un role. Le role determine ce qu'il peut voir ou modifier.</p>
+            <p>Chaque utilisateur a un role. Le role determine ce qu'il peut voir ou modifier. Les droits sont controles dans l'interface et par le serveur.</p>
             <table>
               <thead>
                 <tr>
@@ -441,7 +456,7 @@
                 <tr>
                   <td>Instructeur</td>
                   <td>Consulter les eleves rattaches et ajouter des commentaires internes.</td>
-                  <td>Lecture limitee et commentaires selon les classes rattachees.</td>
+                  <td>Lecture limitee aux classes rattachees, ajout de commentaires, pas d'import, pas d'export, pas de modification administrative.</td>
                 </tr>
               </tbody>
             </table>
@@ -468,6 +483,10 @@
             <div class="screenshot">
               <img src="guide-utilisateur-assets/03-eleves.png" alt="Menu Eleves avec liste et fiche eleve">
               <p class="caption">Menu Eleves : liste a gauche, fiche detaillee a droite.</p>
+            </div>
+            <div class="box">
+              <strong>Affichage sur telephone</strong>
+              <p>Sur telephone ou petit ecran, la fiche eleve s'affiche avant la liste pour eviter de devoir descendre tout en bas. Quand l'utilisateur appuie sur <strong>Ouvrir</strong>, l'ecran se positionne directement sur la fiche.</p>
             </div>
             <h3>Rechercher un eleve</h3>
             <ol>
@@ -562,7 +581,7 @@
 
           <section id="sauvegarde">
             <h2>Menu Sauvegarde</h2>
-            <p>Ce menu permet a l'administrateur de creer une copie de securite des donnees.</p>
+            <p>Ce menu permet a l'administrateur de creer une copie de securite des donnees. Le CRM cree aussi une sauvegarde automatique au premier demarrage de chaque jour.</p>
             <div class="screenshot">
               <img src="guide-utilisateur-assets/07-sauvegarde.png" alt="Menu Sauvegarde du CRM">
               <p class="caption">Menu Sauvegarde : creer une sauvegarde manuelle avant une operation importante.</p>
