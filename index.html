@@ -342,6 +342,8 @@
           <a href="#tableau-de-bord">Tableau de bord</a>
           <a href="#eleves">Menu Eleves</a>
           <a href="#presences">Menu Presences</a>
+          <a href="#matieres">Menu Matieres</a>
+          <a href="#notes">Menu Notes</a>
           <a href="#classes">Menu Classes</a>
           <a href="#utilisateurs">Menu Utilisateurs</a>
           <a href="#import-export">Import / Export</a>
@@ -359,8 +361,8 @@
             <h2>Guide utilisateur du CRM ecole</h2>
             <p>Ce guide explique comment utiliser le CRM pas a pas, sans connaissance informatique. Il suit les menus visibles dans l'application.</p>
             <div class="meta">
-              <span class="pill">Version guide : 2026-06-21</span>
-              <span class="pill">Application : CRM ecole V2.1</span>
+              <span class="pill">Version guide : 2026-06-23</span>
+              <span class="pill">Application : CRM ecole V2.3</span>
               <span class="pill">Public : Direction, secretariat, instructeurs</span>
             </div>
           </header>
@@ -456,8 +458,8 @@
                 </tr>
                 <tr>
                   <td>Instructeur</td>
-                  <td>Consulter les eleves rattaches et ajouter des commentaires internes.</td>
-                  <td>Lecture limitee aux classes rattachees, appel des presences, ajout de commentaires, pas d'import, pas d'export, pas de modification administrative.</td>
+                  <td>Consulter les eleves rattaches, noter les presences, saisir les notes de ses matieres.</td>
+                  <td>Lecture limitee aux classes rattachees, appel des presences, ajout de commentaires, saisie des notes de ses matieres (pas d'import, pas d'export, pas de modification administrative).</td>
                 </tr>
               </tbody>
             </table>
@@ -542,6 +544,102 @@
             <div class="box warning">
               <strong>Important</strong>
               <p>Les presences restent internes au CRM. Elles ne declenchent aucun message automatique aux parents.</p>
+            </div>
+          </section>
+
+          <section id="matieres">
+            <h2>Menu Matieres</h2>
+            <p>Ce menu permet de creer les matieres enseignees et de les affecter aux classes avec un coefficient.</p>
+
+            <h3>Creer une matiere</h3>
+            <ol>
+              <li>Cliquer sur <strong>Matieres</strong>.</li>
+              <li>Saisir le nom, par exemple <code>Francais</code>.</li>
+              <li>Saisir un code court optionnel, par exemple <code>FR</code>.</li>
+              <li>Cliquer sur <strong>Creer la matiere</strong>.</li>
+            </ol>
+
+            <h3>Affecter une matiere a une classe</h3>
+            <ol>
+              <li>Cliquer sur <strong>Matieres</strong>.</li>
+              <li>Dans la section <strong>Affecter une matiere a une classe</strong>, choisir la classe et la matiere.</li>
+              <li>Renseigner le coefficient :<ul>
+                <li><strong>Primaire</strong> : coefficient verrouille a 1 (pas de ponderation au primaire).</li>
+                <li><strong>College</strong> : coefficient modifiable (2 propose par defaut pour le Francais, 1 pour les autres matieres).</li>
+              </ul></li>
+              <li>Choisir un enseignant (optionnel).</li>
+              <li>Cliquer sur <strong>Affecter</strong>.</li>
+            </ol>
+
+            <div class="box warning">
+              <strong>Le coefficient ne se modifie pas apres creation</strong>
+              <p>Le coefficient est defini au moment de l'affectation. Pour changer un coefficient apres creation, il faut supprimer l'affectation (bouton <strong>Retirer</strong>) et la recreer avec le nouveau coefficient.</p>
+            </div>
+
+            <h3>Modifier l'enseignant d'une affectation</h3>
+            <ol>
+              <li>Cliquer sur <strong>Matieres</strong>.</li>
+              <li>Dans la section <strong>Affectations par classe</strong>, derouler la classe.</li>
+              <li>Utiliser la liste deroulante pour changer l'enseignant.</li>
+              <li>Cliquer sur <strong>Enreg.</strong> a cote de la liste.</li>
+            </ol>
+
+            <h3>Retirer une affectation</h3>
+            <p>Cliquer sur <strong>Retirer</strong> pour supprimer une matiere de la classe. Cela n'efface pas la matiere elle-meme, seulement son rattachement a cette classe.</p>
+          </section>
+
+          <section id="notes">
+            <h2>Menu Notes</h2>
+            <p>Ce menu permet de gerer les periodes, saisir les notes des eleves et consulter les moyennes calculees automatiquement. Il est organise en deux panneaux.</p>
+
+            <h3>Panneau Periode</h3>
+            <p>Les periodes representent les sequences de l'annee scolaire :<br>
+              <strong>Primaire</strong> : 3 trimestres.<br>
+              <strong>College</strong> : 2 semestres.</p>
+
+            <h4>Generer les periodes</h4>
+            <p>Un administrateur ou le secretariat peut generer les periodes en un clic :</p>
+            <ol>
+              <li>Cliquer sur <strong>Notes</strong>.</li>
+              <li>Cliquer sur <strong>Generer les periodes</strong>.</li>
+              <li>Choisir le cycle (Primaire ou College).</li>
+              <li>Cliquer sur <strong>Confirmer la generation</strong>.</li>
+            </ol>
+            <p>Les periodes apparaissent alors dans un tableau. Chaque periode peut etre <strong>ouverte</strong> (saisie autorisee) ou <strong>fermee</strong> (notes bloquees).</p>
+
+            <h3>Panneau Saisie des notes</h3>
+
+            <h4>Saisir une note</h4>
+            <ol>
+              <li>Cliquer sur <strong>Notes</strong>.</li>
+              <li>Choisir la classe et la periode.</li>
+              <li>Le tableau affiche les eleves en lignes et les matieres en colonnes.</li>
+              <li>Pour chaque note :<ul>
+                <li>Choisir le <strong>type d'evaluation</strong> : <strong>Mensuelle</strong> (evaluation reguliere) ou <strong>Trimestrielle</strong>/<strong>Semestrielle</strong> selon le cycle.</li>
+                <li>Saisir la note (sur 10 pour le Primaire, sur 20 pour le College).</li>
+                <li>Cliquer sur le bouton <strong>OK</strong> a cote de la note.</li>
+              </ul></li>
+            </ol>
+
+            <p><strong>Upsert</strong> : si tu saisis une note pour le meme eleve, la meme matiere, la meme periode et le meme type d'evaluation, la note precedente est ecrasee par la nouvelle.</p>
+
+            <h4>Moyennes automatiques</h4>
+            <p>Des que tu saisis des notes, les moyennes sont calculees automatiquement et affichees dans la partie inferieure de l'ecran :</p>
+            <ul>
+              <li><strong>Moyenne par matiere</strong> : somme des notes divisee par le nombre de notes, multipliee par le coefficient de la matiere.</li>
+              <li><strong>Moyenne generale</strong> : somme des moyennes ponderees divisee par la somme des coefficients.</li>
+            </ul>
+            <p>Les matieres sans aucune note ne sont pas comptees dans la moyenne generale.</p>
+
+            <h4>Notes dans la fiche eleve</h4>
+            <p>Ouvre la fiche d'un eleve (menu <strong>Eleves</strong>). Sous les presences recentes, un bloc <strong>Notes</strong> affiche les notes par periode avec les moyennes.</p>
+
+            <h3>Exporter les notes</h3>
+            <p>La direction et le secretariat peuvent exporter les notes d'une classe pour une periode donnee au format Excel. Le fichier comprend les notes et la moyenne generale de chaque eleve.</p>
+
+            <div class="box warning">
+              <strong>Periode fermee</strong>
+              <p>Si une periode est fermee, les notes ne peuvent plus etre saisies ni modifiees. Cela permet de verrouiller les notes apres validation.</p>
             </div>
           </section>
 
@@ -718,7 +816,7 @@
               <li>Si un workflow change, actualiser l'exemple de workflow.</li>
               <li>Si l'ecran change visuellement, refaire les captures dans <code>docs/guide-utilisateur-assets/</code>.</li>
             </ul>
-            <p class="footer-note">Derniere mise a jour du guide : 2026-06-21.</p>
+            <p class="footer-note">Derniere mise a jour du guide : 2026-06-23.</p>
           </section>
         </article>
       </main>
