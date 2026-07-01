@@ -210,6 +210,7 @@
           <a href="#notes">Menu Notes</a>
           <a href="#bulletins">Bulletins</a>
           <a href="#classes">Menu Classes</a>
+          <a href="#emploi-du-temps">Emploi du temps (EDT)</a>
           <a href="#utilisateurs">Menu Utilisateurs</a>
           <a href="#import-export">Import / Export</a>
           <a href="#sauvegarde">Sauvegarde</a>
@@ -525,6 +526,66 @@
               <img src="guide-utilisateur-assets/05-utilisateurs.png" alt="Menu Utilisateurs" style="max-width:100%">
               <p class="caption">Menu Utilisateurs : creer les comptes et gerer les roles.</p>
             </div>
+          </section>
+
+          <section id="emploi-du-temps">
+            <h2>Emploi du temps (EDT)</h2>
+            <p>Gerer les creneaux de cours par classe. Chaque creneau a une duree libre (30 min, 1 h, 2 h...) et peut etre associe a une matiere et un professeur.</p>
+
+            <h3>Consulter l'EDT</h3>
+            <ol>
+              <li>Cliquer sur <strong>Emploi du Temps</strong> dans le menu.</li>
+              <li>Selectionner une classe dans la liste deroulante.</li>
+              <li>La grille affiche les creneaux enregistres, tries par horaire.</li>
+            </ol>
+
+            <h3>Ajouter un creneau de cours</h3>
+            <ol>
+              <li>Dans la zone <strong>Ajouter un creneau</strong> sous la grille, choisir :</li>
+              <ul>
+                <li><strong>Jour</strong> : Lundi a Vendredi</li>
+                <li><strong>Heure de debut</strong> et <strong>heure de fin</strong> (format HH:MM)</li>
+                <li><strong>Matiere</strong> : choisir parmi les matieres creees</li>
+                <li><strong>Professeur</strong> (optionnel) : choisir un instructeur</li>
+              </ul>
+              <li>Cliquer sur <strong>+ Ajouter</strong>. Le creneau apparait dans la grille.</li>
+              <li>Cliquer sur <strong>Enregistrer</strong> pour sauvegarder tous les changements.</li>
+            </ol>
+
+            <div class="box tip">
+              <strong>Duree libre</strong> : pas de pas fixe de 1 h. Tu peux creer un cours de 08:00 a 08:30 (30 min), de 08:30 a 09:15 (45 min), ou de 08:00 a 10:00 (2 h).
+            </div>
+
+            <div class="box warning">
+              <strong>Controle des conflits</strong>
+              <p>Le CRM bloque l'enregistrement si deux creneaux se chevauchent dans la meme classe, si un cours chevauche une recreation, ou si le meme professeur est deja affecte dans une autre classe au meme horaire.</p>
+            </div>
+
+            <h3>Ajouter une recreation</h3>
+            <ol>
+              <li>Choisir le jour, l'heure de debut et l'heure de fin.</li>
+              <li>Cliquer sur <strong>+ Recre</strong>.</li>
+              <li>Enregistrer. La recreation apparait en gris dans la grille.</li>
+            </ol>
+
+            <h3>Supprimer un creneau</h3>
+            <ol>
+              <li>Cliquer sur le <strong>&times;</strong> rouge dans le creneau a supprimer.</li>
+              <li>Cliquer sur <strong>Enregistrer</strong> pour valider.</li>
+            </ol>
+
+            <h3>Imprimer l'EDT</h3>
+            <ol>
+              <li>Cliquer sur le bouton <strong>Imprimer l'EDT</strong> sous la grille.</li>
+              <li>Le tableau s'imprime automatiquement en mode paysage.</li>
+            </ol>
+
+            <h3>Qui peut modifier l'EDT ?</h3>
+            <ul>
+              <li><strong>Admin et Secretariat</strong> : toutes les classes.</li>
+              <li><strong>Instructeur principal</strong> : sa classe uniquement.</li>
+              <li><strong>Instructeur de matiere (college)</strong> : consultation uniquement.</li>
+            </ul>
           </section>
 
           <section id="utilisateurs">
