@@ -1,725 +1,937 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Guide utilisateur - Outil de gestion scolaire GS AIME CESAIRE TKB</title>
-    <style>
-      :root {
-        --bg: #f3f6fa;
-        --paper: #ffffff;
-        --ink: #162033;
-        --muted: #5f6d82;
-        --line: #d8e0ec;
-        --blue: #1f6feb;
-        --blue-dark: #174ea6;
-        --green: #157347;
-        --amber: #8a5a00;
-        --red: #b42318;
-        --sidebar: #142033;
-      }
-
-      * { box-sizing: border-box; }
-
-      html { scroll-behavior: smooth; }
-
-      body {
-        margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        line-height: 1.55;
-        color: var(--ink);
-        background: var(--bg);
-      }
-
-      a { color: var(--blue-dark); }
-
-      .layout {
-        min-height: 100vh;
-        display: grid;
-        grid-template-columns: 280px minmax(0, 1fr);
-      }
-
-      .sidebar {
-        position: sticky;
-        top: 0;
-        height: 100vh;
-        overflow: auto;
-        padding: 28px 22px;
-        color: #ffffff;
-        background: var(--sidebar);
-      }
-
-      .sidebar h1 { margin: 0 0 8px; font-size: 28px; line-height: 1.15; }
-
-      .sidebar p { margin: 0 0 24px; color: #c8d2e1; }
-
-      .nav { display: grid; gap: 8px; }
-
-      .nav a {
-        display: block;
-        padding: 10px 12px;
-        border: 1px solid rgba(255, 255, 255, 0.16);
-        border-radius: 8px;
-        color: #ffffff;
-        text-decoration: none;
-      }
-
-      .nav a:hover { background: rgba(255, 255, 255, 0.08); }
-
-      main { padding: 32px; }
-
-      .doc { max-width: 1120px; margin: 0 auto; }
-
-      .hero {
-        padding: 28px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: var(--paper);
-      }
-
-      .hero h2 { margin: 0 0 10px; font-size: 34px; line-height: 1.15; }
-
-      .meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
-
-      .pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 5px 10px;
-        border-radius: 999px;
-        font-size: 13px;
-        font-weight: 700;
-        color: var(--blue-dark);
-        background: #e8f0fe;
-      }
-
-      section {
-        margin-top: 24px;
-        padding: 24px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: var(--paper);
-      }
-
-      h2 { margin: 0 0 14px; font-size: 26px; }
-
-      h3 { margin: 24px 0 8px; font-size: 19px; }
-
-      h3:first-child { margin-top: 0; }
-
-      p { margin: 8px 0; }
-
-      ul, ol { margin-top: 8px; padding-left: 24px; }
-
-      li { margin: 6px 0; }
-
-      code { padding: 2px 5px; border-radius: 4px; color: #101828; background: #eef2f7; }
-
-      .grid { display: grid; gap: 14px; }
-
-      .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-
-      .box { padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: #fbfcfe; }
-
-      .box strong { display: block; margin-bottom: 4px; }
-
-      .warning { border-color: #f6d58b; background: #fff8e6; }
-
-      .danger { border-color: #f1b9b5; background: #fff1f0; }
-
-      .success { border-color: #b7e4c7; background: #eefaf2; }
-
-      .step-list {
-        counter-reset: step;
-        display: grid;
-        gap: 12px;
-        padding-left: 0;
-        list-style: none;
-      }
-
-      .step-list li {
-        counter-increment: step;
-        padding: 14px 14px 14px 54px;
-        position: relative;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: #fbfcfe;
-      }
-
-      .step-list li::before {
-        content: counter(step);
-        position: absolute;
-        left: 14px;
-        top: 14px;
-        width: 26px;
-        height: 26px;
-        display: grid;
-        place-items: center;
-        border-radius: 999px;
-        color: #ffffff;
-        font-weight: 700;
-        background: var(--blue);
-      }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 12px;
-        overflow: hidden;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-      }
-
-      th, td { padding: 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
-
-      th { background: #eef2f7; }
-
-      tr:last-child td { border-bottom: 0; }
-
-      .footer-note { margin: 26px 0 0; color: var(--muted); font-size: 14px; }
-
-      @media (max-width: 900px) {
-        .layout { grid-template-columns: 1fr; }
-        .sidebar { position: static; height: auto; }
-        main { padding: 18px; }
-        .grid.two { grid-template-columns: 1fr; }
-      }
-
-      @media print {
-        .layout { display: block; }
-        .sidebar { display: none; }
-        main { padding: 0; }
-        section, .hero { break-inside: avoid; }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="layout">
-      <aside class="sidebar">
-        <h1>Guide utilisateur gestion scolaire</h1>
-        <p>GS AIME CESAIRE TKB - V2</p>
-        <nav class="nav" aria-label="Sommaire">
-          <a href="#objectif">Objectif du guide</a>
-          <a href="#demarrage">Demarrer le CRM</a>
-          <a href="#connexion">Connexion</a>
-          <a href="#roles">Roles utilisateurs</a>
-          <a href="#tableau-de-bord">Tableau de bord</a>
-          <a href="#eleves">Menu Eleves</a>
-          <a href="#presences">Menu Presences</a>
-          <a href="#matieres">Menu Matieres</a>
-          <a href="#notes">Menu Notes</a>
-          <a href="#bulletins">Bulletins</a>
-          <a href="#classes">Menu Classes</a>
-          <a href="#emploi-du-temps">Emploi du temps (EDT)</a>
-          <a href="#utilisateurs">Menu Utilisateurs</a>
-          <a href="#import-export">Import / Export</a>
-          <a href="#sauvegarde">Sauvegarde</a>
-          <a href="#workflow">Workflow conseille</a>
-          <a href="#bonnes-pratiques">Bonnes pratiques</a>
-          <a href="#depannage">Depannage simple</a>
-          <a href="#maintenance">Maintenance du guide</a>
-        </nav>
-      </aside>
-
-      <main>
-        <article class="doc">
-          <header class="hero">
-            <h2>Guide utilisateur de l'outil de gestion scolaire</h2>
-            <p>Ce guide explique comment utiliser le CRM pas a pas, sans connaissance informatique. Il suit les menus visibles dans l'application.</p>
-            <div class="meta">
-              <span class="pill">Version guide : 2026-06-24</span>
-              <span class="pill">Application : outil de gestion scolaire V2.3</span>
-              <span class="pill">Public : Direction, secretariat, instructeurs</span>
-            </div>
-          </header>
-
-          <section id="objectif">
-            <h2>Objectif du guide</h2>
-            <p>Le CRM sert a centraliser les informations essentielles des eleves : classe, parents, statut de scolarite, presences, notes, bulletins, commentaires internes, import Excel, exports et sauvegardes.</p>
-            <div class="grid two">
-              <div class="box success">
-                <strong>Ce que le CRM permet de faire</strong>
-                <p>Retrouver un eleve, gerer sa fiche, faire l'appel, suivre les presences, saisir les notes, editer des bulletins (individuels ou par classe), exporter et sauvegarder.</p>
-              </div>
-              <div class="box warning">
-                <strong>Ce que le CRM ne gere pas</strong>
-                <p>Le CRM ne gere pas les paiements complets, la comptabilite ou les emplois du temps. Il fournit un statut simple de scolarite.</p>
-              </div>
-            </div>
-          </section>
-
-          <section id="demarrage">
-            <h2>Demarrer le CRM</h2>
-            <h3>Sur Mac</h3>
-            <ol>
-              <li>Ouvrir le dossier du CRM.</li>
-              <li>Si c'est la premiere utilisation, double-cliquer sur <code>INSTALLER_PACKAGES_CRM_MAC.command</code>.</li>
-              <li>Double-cliquer sur <code>LANCER_CRM_MAC.command</code>.</li>
-              <li>Le navigateur s'ouvre sur l'adresse locale du CRM.</li>
-            </ol>
-
-            <h3>Depuis un autre appareil (telephone, tablette)</h3>
-            <ol>
-              <li>Connecter l'appareil au meme Wi-Fi que la machine serveur.</li>
-              <li>Lancer le CRM avec <code>LANCER_CRM_RESEAU_MAC.command</code> sur le Mac serveur.</li>
-              <li>Reperer l'adresse affichee (ex : <code>http://192.168.1.25:8791</code>).</li>
-              <li>Ouvrir cette adresse dans le navigateur de l'appareil.</li>
-            </ol>
-            <div class="box warning">
-              <strong>Important</strong>
-              <p>Ne pas fermer la fenetre Terminal pendant l'utilisation. Le mode reseau local est reserve au reseau de l'ecole, ne pas exposer sur Internet.</p>
-            </div>
-          </section>
-
-          <section id="connexion">
-            <h2>Connexion</h2>
-            <p>Affiche un ecran de connexion. L'utilisateur saisit son identifiant et son mot de passe, puis clique sur <strong>Se connecter</strong>.</p>
-            <div class="box">
-              <strong>Comptes de test disponibles</strong>
-              <p><code>admin_test</code> / <code>demo2026</code> (administration)<br>
-              <code>secretariat_test</code> / <code>demo2026</code> (secretariat)<br>
-              <code>instructeur_test</code> / <code>demo2026</code> (instructeur)</p>
-            </div>
-            <div class="screenshot">
-              <img src="guide-utilisateur-assets/01-connexion.png" alt="Ecran de connexion" style="max-width:100%">
-              <p class="caption">Ecran de connexion : saisir identifiant et mot de passe.</p>
-            </div>
-          </section>
-
-          <section id="roles">
-            <h2>Roles utilisateurs</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Role</th>
-                  <th>Droits</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Administrateur / Direction</td>
-                  <td>Gestion des utilisateurs, classes, eleves, notes, presences, matieres, exports, sauvegardes, bulletins.</td>
-                </tr>
-                <tr>
-                  <td>Secretariat</td>
-                  <td>Gestion des eleves, classes, notes, presences, matieres, import/export, bulletins.</td>
-                </tr>
-                <tr>
-                  <td>Instructeur</td>
-                  <td>Appel des presences de sa classe, saisie des notes de ses matieres, consultation eleves. Pas d'import/export, pas de modification administrative.</td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
-
-          <section id="tableau-de-bord">
-            <h2>Menu Tableau de bord</h2>
-            <p>Vision rapide de la situation generale : nombre d'eleves, classes actives, fiches a completer.</p>
-            <h3>Indicateurs</h3>
-            <ul>
-              <li><strong>Effectifs par classe</strong> : graphique a barres horizontales.</li>
-              <li><strong>Repartition par cycle</strong> : Maternelle, Primaire, College.</li>
-              <li><strong>Presences du jour</strong> : graphique des statuts (present, absent, retard, excuse).</li>
-              <li><strong>Statuts de scolarite</strong> : nombre d'eleves a jour, non a jour, a verifier.</li>
-              <li><strong>Classes sans instructeur principal</strong> : classes a completer.</li>
-              <li><strong>Fiches a completer</strong> : eleves avec champs manquants.</li>
-              <li><strong>Classes sans appel aujourd'hui</strong> : rappel.</li>
-              <li><strong>Moyennes generales par classe</strong> : charge automatiquement depuis les notes.</li>
-              <li><strong>Derniere sauvegarde</strong> : date de la derniere sauvegarde effectuee.</li>
-            </ul>
-            <div class="screenshot">
-              <img src="guide-utilisateur-assets/02-dashboard.png" alt="Tableau de bord" style="max-width:100%">
-              <p class="caption">Tableau de bord : indicateurs generaux, effectifs, presences, moyennes.</p>
-            </div>
-          </section>
-
-          <section id="eleves">
-            <h2>Menu Eleves</h2>
-            <p>Rechercher, creer, consulter et modifier les fiches eleves. La liste est a gauche, la fiche detaillee a droite (scroll independant).</p>
-
-            <h3>Rechercher</h3>
-            <p>Utiliser la barre de recherche (nom, prenom, matricule, classe). Filtrer par statut, completude, classe. Basculer entre actifs et archives.</p>
-
-            <h3>Creer un eleve</h3>
-            <ol>
-              <li>Cliquer sur <strong>Nouvel eleve</strong>.</li>
-              <li>Remplir au minimum le nom et la classe.</li>
-              <li>Completer les informations (prenom, sexe, date/lieu naissance, parents, telephone).</li>
-              <li>Choisir le statut de scolarite (<strong>a jour</strong>, <strong>non a jour</strong>, <strong>a verifier</strong>).</li>
-              <li>Cliquer sur <strong>Creer l'eleve</strong>.</li>
-            </ol>
-
-            <h3>Fiche eleve detaillee</h3>
-            <p>La fiche affiche toutes les informations. Plusieurs sections repliables :</p>
-            <ul>
-              <li><strong>Presences recentes</strong> : les 6 derniers enregistrements (absent, retard, excuse).</li>
-              <li><strong>Notes</strong> : notes par periode avec moyennes si des notes existent.</li>
-              <li><strong>Appreciation bulletin</strong> : champ de saisie pour le commentaire qui apparaitra sur le bulletin.</li>
-              <li><strong>Commentaires internes</strong> : suivi interne, non visible sur les exports standards.</li>
-            </ul>
-
-            <h3>Imprimer une fiche eleve</h3>
-            <p>Ouvrir la fiche, cliquer sur <strong>Imprimer la fiche</strong>. La version imprimee masque la navigation et les formulaires.</p>
-            <div class="screenshot">
-              <img src="guide-utilisateur-assets/03-eleves.png" alt="Menu Eleves" style="max-width:100%">
-              <p class="caption">Menu Eleves : liste a gauche, fiche detaillee a droite.</p>
-            </div>
-          </section>
-
-          <section id="presences">
-            <h2>Menu Presences</h2>
-            <p>Sous-menu avec deux onglets : <strong>Appel du jour</strong> et <strong>Bilan eleve</strong>.</p>
-
-            <h3>Faire l'appel</h3>
-            <ol>
-              <li>Cliquer sur <strong>Presences</strong>.</li>
-              <li>Choisir la classe et la date (date du jour par defaut).</li>
-              <li>Pour chaque eleve, choisir le statut : <strong>present</strong>, <strong>absent</strong>, <strong>retard</strong> ou <strong>excuse</strong>.</li>
-              <li>Ajouter un commentaire court si necessaire.</li>
-              <li>Cliquer sur <strong>Enregistrer l'appel</strong>.</li>
-            </ol>
-            <p>Le resume en haut du panneau affiche les compteurs par statut.</p>
-
-            <h3>Bilan eleve</h3>
-            <ol>
-              <li>Cliquer sur l'onglet <strong>Bilan eleve</strong>.</li>
-              <li>Choisir la classe, l'eleve, et la periode (date debut et date fin).</li>
-              <li>Le tableau affiche uniquement les absences et retards (par defaut l'eleve est present).</li>
-              <li>Les totaux sont calcules automatiquement (absences, retards, excuses).</li>
-              <li>Exporter le bilan individuel en Excel si besoin.</li>
-            </ol>
-
-            <h3>Exporter les presences</h3>
-            <p>La direction et le secretariat peuvent exporter le suivi mensuel depuis l'ecran d'appel (bouton <strong>Exporter le mois</strong>).</p>
-            <div class="screenshot">
-              <img src="guide-utilisateur-assets/08-presences.png" alt="Menu Presences" style="max-width:100%">
-              <p class="caption">Menu Presences : appel du jour et resume des statuts.</p>
-            </div>
-          </section>
-
-          <section id="matieres">
-            <h2>Menu Matieres</h2>
-            <p>Gerer les matieres enseignees et les affecter aux classes avec coefficient et instructeur.</p>
-
-            <h3>Creer une matiere</h3>
-            <ol>
-              <li>Cliquer sur <strong>Matieres</strong>.</li>
-              <li>Saisir le nom (ex : <code>Francais</code>) et un code court (ex : <code>FR</code>).</li>
-              <li>Cliquer sur <strong>Creer la matiere</strong>.</li>
-            </ol>
-
-            <h3>Affecter une matiere a une classe</h3>
-            <ol>
-              <li>Dans la section <strong>Affecter une matiere a une classe</strong>, choisir la classe et la matiere.</li>
-              <li>Renseigner le coefficient :<ul>
-                <li><strong>Primaire</strong> : coefficient verrouille a 1.</li>
-                <li><strong>College</strong> : coefficient modifiable (2 pour le Francais par defaut).</li>
-              </ul></li>
-              <li>Choisir un enseignant (optionnel).</li>
-              <li>Cliquer sur <strong>Affecter</strong>.</li>
-            </ol>
-            <div class="box warning">
-              <strong>Le coefficient ne se modifie pas apres creation</strong>
-              <p>Pour changer un coefficient, il faut supprimer l'affectation et la recreer.</p>
-            </div>
-
-            <h3>Voir les affectations par classe</h3>
-            <p>La section <strong>Affectations par classe</strong> liste toutes les matieres de chaque classe avec leur coefficient et instructeur. Possibilite de modifier l'instructeur directement depuis cette liste, ou de retirer une affectation.</p>
-            <div class="screenshot">
-              <img src="guide-utilisateur-assets/09-matieres.png" alt="Menu Matieres" style="max-width:100%">
-              <p class="caption">Menu Matieres : creer, affecter aux classes, gerer les coefficients.</p>
-            </div>
-          </section>
-
-          <section id="notes">
-            <h2>Menu Notes</h2>
-            <p>Saisir les notes des eleves, gerer les periodes, consulter les moyennes et exporter.</p>
-
-            <h3>Periodes</h3>
-            <p>Les periodes representent l'annee scolaire :<br>
-              <strong>Primaire</strong> : 3 trimestres.<br>
-              <strong>College</strong> : 2 semestres.</p>
-            <p>Un administrateur peut generer les periodes en un clic : <strong>Notes > Generer les periodes</strong>.</p>
-            <p>Chaque periode peut etre ouverte (saisie autorisee) ou fermee (notes bloquees).</p>
-
-            <h3>Saisir une note</h3>
-            <ol>
-              <li>Cliquer sur <strong>Notes</strong>.</li>
-              <li>Choisir la classe et la periode.</li>
-              <li>Le tableau affiche les eleves en lignes et les matieres en colonnes.</li>
-              <li>Pour chaque note :<ul>
-                <li>Choisir le <strong>type d'evaluation</strong> (Mensuelle, Trimestrielle, Semestrielle).</li>
-                <li>Saisir la note (sur 10 pour le Primaire, sur 20 pour le College).</li>
-                <li>Cliquer sur <strong>+</strong> pour ajouter.</li>
-              </ul></li>
-            </ol>
-            <p><strong>Upsert</strong> : si la meme combinaison (eleve, matiere, periode, type d'evaluation) existe deja, la note est ecrasee.</p>
-
-            <h3>Moyennes automatiques</h3>
-            <p>Les moyennes sont calculees automatiquement :</p>
-            <ul>
-              <li><strong>Moyenne par matiere</strong> : somme des notes / nombre de notes, multipliee par le coefficient.</li>
-              <li><strong>Moyenne generale</strong> : somme des moyennes ponderees / somme des coefficients.</li>
-              <li><strong>Classement</strong> : les eleves sont classes du meilleur au moins bon.</li>
-            </ul>
-            <p>Les matieres sans note ne sont pas comptees dans la moyenne generale.</p>
-
-            <h3>Exporter les notes</h3>
-            <p>Depuis l'ecran Notes, la direction et le secretariat peuvent exporter les notes d'une classe pour une periode au format Excel.</p>
-            <div class="screenshot">
-              <img src="guide-utilisateur-assets/10-notes.png" alt="Menu Notes" style="max-width:100%">
-              <p class="caption">Menu Notes : saisie des notes par classe et periode.</p>
-            </div>
-          </section>
-
-          <section id="bulletins">
-            <h2>Bulletins</h2>
-            <p>Le bulletin affiche les <strong>moyennes sur la periode du cycle</strong> : trimestriel pour le Primaire, semestriel pour le College. Le detail des notes mensuelles reste consultable dans la fiche eleve (bloc Notes).</p>
-            <p>Deux facons d'editer un bulletin : individuel ou par classe.</p>
-
-            <h3>Bulletin individuel</h3>
-            <ol>
-              <li>Ouvrir la fiche d'un eleve (<strong>Eleves</strong>).</li>
-              <li>Cliquer sur le bouton <strong>Bulletin</strong> (orange).</li>
-              <li>Choisir la periode dans la boite de dialogue (uniquement les periodes du cycle de la classe : trimestres ou semestres).</li>
-              <li>Le bulletin s'affiche en version imprimable avec :<ul>
-                <li>En-tete de l'etablissement et titre <strong>Bulletin trimestriel</strong> ou <strong>Bulletin semestriel</strong>.</li>
-                <li>Tableau des matieres : coefficient, <strong>moyenne sur la periode</strong>.</li>
-                <li>Moyenne generale et classement.</li>
-                <li>Resume des absences/retards/excuses sur la periode.</li>
-                <li>Appreciation et recommandations (saisie dans la fiche eleve).</li>
-                <li>Bareme avec rappel : les moyennes couvrent toutes les evaluations de la periode, le detail mensuel est consultable dans la fiche eleve.</li>
-              </ul></li>
-              <li>Utiliser <strong>Ctrl+P / Cmd+P</strong> pour imprimer ou sauvegarder en PDF.</li>
-            </ol>
-
-            <h3>Bulletins par classe</h3>
-            <ol>
-              <li>Aller dans <strong>Notes</strong>, choisir la classe et la periode.</li>
-              <li>Cliquer sur le bouton <strong>Bulletins classe</strong> (orange).</li>
-              <li>Les bulletins se generent les uns apres les autres.</li>
-              <li>Utiliser <strong>Ctrl+P / Cmd+P</strong> pour imprimer la selection.</li>
-            </ol>
-
-            <h3>Appreciation bulletin</h3>
-            <p>Dans la fiche eleve, sous les notes, il y a un champ <strong>Appreciation bulletin</strong>. Ce texte apparait automatiquement sur son bulletin. Chaque instructeur peut le renseigner depuis la fiche de l'eleve.</p>
-
-            <h3>Exporter les bulletins en Excel</h3>
-            <p>Depuis l'ecran Notes, le bouton <strong>Exporter les notes (Excel)</strong> produit un fichier avec les notes, moyennes, coefficients, classement et absences. Utilisable pour les releves de notes.</p>
-            <div class="screenshot">
-              <img src="guide-utilisateur-assets/04-classes.png" alt="Menu Classes" style="max-width:100%">
-              <p class="caption">Menu Classes : creer et gerer les classes.</p>
-            </div>
-          </section>
-
-          <section id="classes">
-            <h2>Menu Classes</h2>
-            <p>Creer les classes, choisir leur cycle et rattacher un instructeur principal.</p>
-            <ol>
-              <li>Cliquer sur <strong>Classes</strong>.</li>
-              <li>Saisir le nom (ex : <code>7eme A</code>).</li>
-              <li>Choisir le cycle : Maternelle, Primaire, College.</li>
-              <li>Choisir un instructeur principal si deja cree.</li>
-              <li>Cliquer sur <strong>Creer la classe</strong>.</li>
-            </ol>
-            <p>Archiver une classe permet de ne plus l'utiliser sans perdre l'historique.</p>
-            <div class="screenshot">
-              <img src="guide-utilisateur-assets/05-utilisateurs.png" alt="Menu Utilisateurs" style="max-width:100%">
-              <p class="caption">Menu Utilisateurs : creer les comptes et gerer les roles.</p>
-            </div>
-          </section>
-
-          <section id="emploi-du-temps">
-            <h2>Emploi du temps (EDT)</h2>
-            <p>Gerer les creneaux de cours par classe. Chaque creneau a une duree libre (30 min, 1 h, 2 h...) et peut etre associe a une matiere et un professeur.</p>
-
-            <h3>Consulter l'EDT</h3>
-            <ol>
-              <li>Cliquer sur <strong>Emploi du Temps</strong> dans le menu.</li>
-              <li>Selectionner une classe dans la liste deroulante.</li>
-              <li>La grille affiche les creneaux enregistres, tries par horaire.</li>
-            </ol>
-
-            <h3>Ajouter un creneau de cours</h3>
-            <ol>
-              <li>Dans la zone <strong>Ajouter un creneau</strong> sous la grille, choisir :</li>
-              <ul>
-                <li><strong>Jour</strong> : Lundi a Vendredi</li>
-                <li><strong>Heure de debut</strong> et <strong>heure de fin</strong> (format HH:MM)</li>
-                <li><strong>Matiere</strong> : choisir parmi les matieres creees</li>
-                <li><strong>Professeur</strong> (optionnel) : choisir un instructeur</li>
-              </ul>
-              <li>Cliquer sur <strong>+ Ajouter</strong>. Le creneau apparait dans la grille.</li>
-              <li>Cliquer sur <strong>Enregistrer</strong> pour sauvegarder tous les changements.</li>
-            </ol>
-
-            <div class="box tip">
-              <strong>Duree libre</strong> : pas de pas fixe de 1 h. Tu peux creer un cours de 08:00 a 08:30 (30 min), de 08:30 a 09:15 (45 min), ou de 08:00 a 10:00 (2 h).
-            </div>
-
-            <div class="box warning">
-              <strong>Controle des conflits</strong>
-              <p>Le CRM bloque l'enregistrement si deux creneaux se chevauchent dans la meme classe, si un cours chevauche une recreation, ou si le meme professeur est deja affecte dans une autre classe au meme horaire.</p>
-            </div>
-
-            <h3>Ajouter une recreation</h3>
-            <ol>
-              <li>Choisir le jour, l'heure de debut et l'heure de fin.</li>
-              <li>Cliquer sur <strong>+ Recre</strong>.</li>
-              <li>Enregistrer. La recreation apparait en gris dans la grille.</li>
-            </ol>
-
-            <h3>Supprimer un creneau</h3>
-            <ol>
-              <li>Cliquer sur le <strong>&times;</strong> rouge dans le creneau a supprimer.</li>
-              <li>Cliquer sur <strong>Enregistrer</strong> pour valider.</li>
-            </ol>
-
-            <h3>Imprimer l'EDT</h3>
-            <ol>
-              <li>Cliquer sur le bouton <strong>Imprimer l'EDT</strong> sous la grille.</li>
-              <li>Le tableau s'imprime automatiquement en mode paysage.</li>
-            </ol>
-
-            <h3>Qui peut modifier l'EDT ?</h3>
-            <ul>
-              <li><strong>Admin et Secretariat</strong> : toutes les classes.</li>
-              <li><strong>Instructeur principal</strong> : sa classe uniquement.</li>
-              <li><strong>Instructeur de matiere (college)</strong> : consultation uniquement.</li>
-            </ul>
-          </section>
-
-          <section id="utilisateurs">
-            <h2>Menu Utilisateurs</h2>
-            <p>Reserve a l'administrateur. Creer les comptes et choisir les roles.</p>
-            <ol>
-              <li>Cliquer sur <strong>Utilisateurs</strong>.</li>
-              <li>Saisir un identifiant (sans espace, ex : <code>sekou_admin</code>).</li>
-              <li>Saisir le nom affiche (ex : <code>Sekou Camara</code>).</li>
-              <li>Choisir le role.</li>
-              <li>Saisir un mot de passe.</li>
-              <li>Cliquer sur <strong>Creer l'utilisateur</strong>.</li>
-            </ol>
-            <div class="box warning">
-              <strong>Conseil</strong>
-              <p>Creer d'abord les instructeurs, puis les classes, pour pouvoir rattacher l'instructeur principal des la creation de la classe.</p>
-            </div>
-            <div class="screenshot">
-              <img src="guide-utilisateur-assets/06-import-export.png" alt="Menu Import Export" style="max-width:100%">
-              <p class="caption">Menu Import / Export : analyser avant d'importer.</p>
-            </div>
-          </section>
-
-          <section id="import-export">
-            <h2>Menu Import / Export</h2>
-            <p>Importer une liste d'eleves depuis Excel et exporter des listes.</p>
-
-            <h3>Importer</h3>
-            <ol>
-              <li>Cliquer sur <strong>Import / Export</strong>.</li>
-              <li>Si le fichier n'a pas de colonne classe, choisir une classe cible.</li>
-              <li>Choisir le fichier Excel.</li>
-              <li>Cliquer sur <strong>Analyser avant import</strong>.</li>
-              <li>Lire le resume (lignes importables, bloquees).</li>
-              <li>Si correct, cliquer sur <strong>Confirmer l'import partiel</strong>.</li>
-            </ol>
-            <div class="box danger">
-              <strong>Ne jamais confirmer sans lire le resume.</strong>
-            </div>
-
-            <h3>Exporter</h3>
-            <p>Boutons d'export disponibles : liste des eleves actifs, fiches a completer, eleves non a jour, effectifs par classe.</p>
-            <div class="screenshot">
-              <img src="guide-utilisateur-assets/07-sauvegarde.png" alt="Menu Sauvegarde" style="max-width:100%">
-              <p class="caption">Menu Sauvegarde : creer une copie de securite.</p>
-            </div>
-          </section>
-
-          <section id="sauvegarde">
-            <h2>Menu Sauvegarde</h2>
-            <p>L'administrateur peut creer une copie de securite. Le CRM cree aussi une sauvegarde automatique au premier demarrage de chaque jour.</p>
-            <h3>Quand sauvegarder</h3>
-            <ul>
-              <li>Avant un import Excel important.</li>
-              <li>Apres une grosse session de saisie.</li>
-              <li>Avant de copier le dossier CRM.</li>
-            </ul>
-            <p>La date de la derniere sauvegarde est visible sur le Tableau de bord.</p>
-          </section>
-
-          <section id="workflow">
-            <h2>Workflow conseille : demarrer une nouvelle annee</h2>
-            <ol class="step-list">
-              <li><strong>Verifier le CRM.</strong> Ouvrir, se connecter, consulter le tableau de bord.</li>
-              <li><strong>Creer les utilisateurs.</strong> Aller dans <strong>Utilisateurs</strong>, creer les comptes.</li>
-              <li><strong>Creer les classes.</strong> Aller dans <strong>Classes</strong>, creer les classes et rattacher les instructeurs.</li>
-              <li><strong>Creer les matieres et les affecter.</strong> Aller dans <strong>Matieres</strong>, creer les matieres et les affecter aux classes avec coefficients.</li>
-              <li><strong>Importer les eleves ou les saisir.</strong> Utiliser <strong>Import / Export</strong> ou <strong>Eleves</strong>.</li>
-              <li><strong>Generer les periodes.</strong> Aller dans <strong>Notes > Generer les periodes</strong>.</li>
-              <li><strong>Faire l'appel quotidien.</strong> Aller dans <strong>Presences</strong>.</li>
-              <li><strong>Saisir les notes.</strong> Aller dans <strong>Notes</strong>, choisir la classe et la periode.</li>
-              <li><strong>Editer les bulletins.</strong> Individuels ou par classe, avec appreciations.</li>
-              <li><strong>Sauvegarder.</strong> Aller dans <strong>Sauvegarde</strong>.</li>
-            </ol>
-          </section>
-
-          <section id="bonnes-pratiques">
-            <h2>Bonnes pratiques</h2>
-            <div class="grid two">
-              <div class="box success">
-                <strong>A faire</strong>
-                <ul>
-                  <li>Sauvegarder avant un import important.</li>
-                  <li>Utiliser les filtres pour les fiches incompletes.</li>
-                  <li>Archiver plutot que supprimer.</li>
-                  <li>Creer un compte nominatif par utilisateur.</li>
-                </ul>
-              </div>
-              <div class="box danger">
-                <strong>A eviter</strong>
-                <ul>
-                  <li>Fermer la fenetre Terminal pendant l'utilisation.</li>
-                  <li>Partager le meme compte.</li>
-                  <li>Confirmer un import sans verifier le resume.</li>
-                  <li>Modifier les fichiers dans <code>data/</code>.</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section id="depannage">
-            <h2>Depannage simple</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Probleme</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>Le CRM ne s'ouvre pas.</td><td>Relancer le script de lancement.</td></tr>
-                <tr><td>Node.js manque.</td><td>Lancer le script d'installation des packages.</td></tr>
-                <tr><td>Erreur de connexion.</td><td>Verifier que la fenetre Terminal est ouverte.</td></tr>
-                <tr><td>Eleve introuvable.</td><td>Retirer les filtres, verifier le filtre Actifs/Archives.</td></tr>
-                <tr><td>Import bloque beaucoup de lignes.</td><td>Lire les messages, corriger le fichier Excel.</td></tr>
-                <tr><td>Notes non visibles.</td><td>Verifier que la periode est ouverte et que la classe/eleve ont des matieres affectees.</td></tr>
-                <tr><td>Bulletin vide.</td><td>Verifier que l'eleve a des notes et des absences pour la periode selectionnee.</td></tr>
-              </tbody>
-            </table>
-          </section>
-
-          <section id="maintenance">
-            <h2>Maintenance du guide</h2>
-            <p>Ce guide doit rester aligne avec le CRM. A chaque evolution, verifier les sections concernees.</p>
-            <ul>
-              <li>Si un menu change, mettre a jour la section correspondante.</li>
-              <li>Si un workflow change, actualiser l'exemple de workflow.</li>
-              <li>Si un ecran change, refaire les captures.</li>
-            </ul>
-            <p class="footer-note">Derniere mise a jour du guide : 2026-06-24.</p>
-          </section>
-        </article>
-      </main>
-    </div>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide utilisateur — Gestion scolaire GS Aimé Césaire</title>
+<meta name="description" content="Guide d'utilisation de l'outil de gestion scolaire du GS Aimé Césaire : connexion, tableau de bord, élèves, emploi du temps, notes, ressources, paramétrage.">
+<link rel="icon" href="guide-utilisateur-assets/logo-ecole.png">
+<style>
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("guide-utilisateur-assets/inter-latin-var.woff2") format("woff2");
+}
+
+:root {
+  --ink: #141824;
+  --ink-2: #2f3645;
+  --muted: #667085;
+  --subtle: #98a2b3;
+  --line: #e7e9ee;
+  --paper: #ffffff;
+  --surface: #f6f7f9;
+  --primary: #6941c6;
+  --primary-ink: #5b36b3;
+  --primary-soft: #f4f0fd;
+  --primary-line: #ddd1f8;
+  --amber: #b54708;
+  --amber-bg: #fffaeb;
+  --amber-line: #fedf89;
+  --green: #067647;
+  --green-bg: #ecfdf3;
+  --green-line: #abefc6;
+  --shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 1px 3px rgba(16, 24, 40, 0.03);
+  --shadow-img: 0 12px 32px -12px rgba(16, 24, 40, 0.22), 0 2px 6px rgba(16, 24, 40, 0.05);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+
+body {
+  margin: 0;
+  color: var(--ink-2);
+  background: var(--surface);
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  font-feature-settings: "cv05" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--primary-ink); text-underline-offset: 3px; }
+
+h1, h2, h3 { color: var(--ink); line-height: 1.25; letter-spacing: -0.015em; }
+
+h2 {
+  margin: 0 0 6px;
+  font-size: 26px;
+  font-weight: 650;
+  letter-spacing: -0.022em;
+}
+
+h3 {
+  margin: 34px 0 8px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+p { margin: 0 0 14px; }
+
+ul, ol { margin: 0 0 16px; padding-left: 22px; }
+li { margin: 4px 0; }
+li::marker { color: var(--subtle); }
+
+strong { color: var(--ink); font-weight: 600; }
+
+kbd, .btn {
+  display: inline-block;
+  padding: 0 8px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid #d4d8e0;
+  border-radius: 6px;
+  box-shadow: 0 1px 0 #d4d8e0;
+  font-family: inherit;
+  font-size: 0.88em;
+  font-weight: 500;
+  line-height: 1.7;
+  white-space: nowrap;
+}
+
+/* ---------- Mise en page ---------- */
+.layout {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.toc {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 28px 18px 28px 24px;
+  border-right: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.toc-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+  text-decoration: none;
+}
+
+.toc-brand img { width: 52px; height: auto; }
+
+.toc-brand span {
+  display: grid;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.toc-brand small { color: var(--muted); font-size: 12px; font-weight: 500; }
+
+.toc ol { margin: 0; padding: 0; list-style: none; }
+
+.toc li { margin: 0; }
+
+.toc a {
+  display: block;
+  padding: 6px 10px;
+  color: var(--ink-2);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.toc a:hover { background: #f4f5f8; color: var(--ink); }
+
+.toc a.is-current { color: var(--primary-ink); background: var(--primary-soft); }
+
+.toc .toc-group {
+  margin: 16px 0 4px;
+  padding: 0 10px;
+  color: var(--subtle);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+main { min-width: 0; padding: 40px 48px 80px; }
+
+.hero {
+  padding: 36px 36px 30px;
+  margin-bottom: 28px;
+  background:
+    radial-gradient(40rem 18rem at 100% 0%, rgba(105, 65, 198, 0.10), transparent 70%),
+    var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.hero .kicker { margin: 0 0 6px; color: var(--primary-ink); font-size: 13px; font-weight: 600; }
+
+.hero h1 { margin: 0 0 10px; font-size: 34px; font-weight: 650; letter-spacing: -0.028em; }
+
+.hero p { max-width: 64ch; color: var(--muted); font-size: 17px; }
+
+.hero-facts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+
+.hero-facts span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  color: var(--ink-2);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.hero-facts a { font-weight: 600; text-decoration: none; }
+
+section.chapter {
+  margin-bottom: 28px;
+  padding: 32px 36px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.chapter-head { margin-bottom: 18px; }
+
+.chapter-head p { margin: 4px 0 0; color: var(--muted); }
+
+.roles { display: inline-flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; }
+
+.role {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 500;
+  vertical-align: 2px;
+}
+
+.role.dir { color: var(--primary-ink); background: var(--primary-soft); box-shadow: inset 0 0 0 1px var(--primary-line); }
+.role.sec { color: #175cd3; background: #eff8ff; box-shadow: inset 0 0 0 1px #b2ddff; }
+.role.ens { color: var(--green); background: var(--green-bg); box-shadow: inset 0 0 0 1px var(--green-line); }
+
+/* ---------- Captures ---------- */
+figure { margin: 22px 0 26px; }
+
+figure a { display: block; border-radius: 12px; }
+
+figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow-img);
+}
+
+figcaption { margin-top: 10px; color: var(--muted); font-size: 14px; text-align: center; }
+
+.phones { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin: 22px 0; }
+
+.phones figure { margin: 0; }
+
+.phones img { border-radius: 22px; }
+
+/* ---------- Encadrés ---------- */
+.note, .tip, .warn {
+  margin: 18px 0;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 15px;
+}
+
+.note { background: var(--surface); border: 1px solid var(--line); }
+.tip { background: var(--primary-soft); border: 1px solid var(--primary-line); }
+.warn { background: var(--amber-bg); border: 1px solid var(--amber-line); }
+
+.note > :last-child, .tip > :last-child, .warn > :last-child { margin-bottom: 0; }
+
+.note > strong:first-child, .tip > strong:first-child, .warn > strong:first-child { display: block; margin-bottom: 2px; }
+
+/* ---------- Étapes ---------- */
+ol.steps { counter-reset: step; list-style: none; padding: 0; }
+
+ol.steps > li {
+  position: relative;
+  margin: 0 0 12px;
+  padding-left: 40px;
+  counter-increment: step;
+}
+
+ol.steps > li::before {
+  content: counter(step);
+  position: absolute;
+  top: 1px;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  color: var(--primary-ink);
+  background: var(--primary-soft);
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ---------- Tableau des droits ---------- */
+.table-wrap { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 12px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+
+th, td { padding: 10px 14px; border-bottom: 1px solid #eef0f3; text-align: left; vertical-align: top; }
+
+th { color: var(--muted); background: #f9fafb; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+
+td.c, th.c { text-align: center; }
+
+tr:last-child td { border-bottom: 0; }
+
+.yes { color: var(--green); font-weight: 600; }
+.no { color: var(--subtle); }
+.part { color: var(--amber); font-weight: 500; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 16px; margin: 8px 0 18px; color: var(--muted); font-size: 14px; }
+
+.dot { display: inline-block; width: 10px; height: 10px; margin-right: 6px; border-radius: 3px; vertical-align: -1px; }
+
+footer { margin-top: 36px; color: var(--muted); font-size: 13.5px; text-align: center; }
+
+/* ---------- Téléphone et tablette ---------- */
+@media (max-width: 1000px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+
+  .toc {
+    position: static;
+    height: auto;
+    padding: 18px 16px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .toc details summary {
+    color: var(--ink);
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  main { padding: 20px 16px 60px; }
+
+  .hero, section.chapter { padding: 22px 18px; border-radius: 16px; }
+
+  .hero h1 { font-size: 27px; }
+
+  h2 { font-size: 22px; }
+
+  .phones { grid-template-columns: minmax(0, 1fr); max-width: 320px; margin-left: auto; margin-right: auto; }
+}
+
+@media (min-width: 1001px) {
+  .toc details > summary { display: none; }
+}
+
+@media print {
+  .toc { display: none; }
+  .layout { display: block; }
+  main { padding: 0; }
+  section.chapter, .hero { box-shadow: none; }
+  figure { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav class="toc" aria-label="Sommaire">
+  <a class="toc-brand" href="#accueil">
+    <img src="guide-utilisateur-assets/logo-ecole.png" alt="Logo GS Aimé Césaire">
+    <span>Guide utilisateur<small>Gestion scolaire · V2.6</small></span>
+  </a>
+  <details open>
+    <summary>Sommaire</summary>
+    <ol>
+      <li class="toc-group">Pour commencer</li>
+      <li><a href="#connexion">Se connecter</a></li>
+      <li><a href="#roles">Qui peut faire quoi</a></li>
+      <li><a href="#reperes">Se repérer dans l'outil</a></li>
+      <li class="toc-group">Au quotidien</li>
+      <li><a href="#tableau-de-bord">Tableau de bord</a></li>
+      <li><a href="#eleves">Élèves et fiche élève</a></li>
+      <li><a href="#paiements">Paiements</a></li>
+      <li><a href="#emploi-du-temps">Emploi du temps</a></li>
+      <li><a href="#notes">Notes et bulletins</a></li>
+      <li><a href="#ressources">Ressources pédagogiques</a></li>
+      <li class="toc-group">Paramétrage (direction)</li>
+      <li><a href="#classes">Classes</a></li>
+      <li><a href="#matieres">Matières</a></li>
+      <li><a href="#utilisateurs">Utilisateurs</a></li>
+      <li><a href="#rentree">Nouvelle rentrée</a></li>
+      <li class="toc-group">Données</li>
+      <li><a href="#import-export">Import / Export</a></li>
+      <li><a href="#sauvegarde">Sauvegarde</a></li>
+      <li class="toc-group">Pratique</li>
+      <li><a href="#telephone">Sur téléphone</a></li>
+      <li><a href="#demarrage">Démarrer l'année</a></li>
+      <li><a href="#depannage">Questions fréquentes</a></li>
+    </ol>
+  </details>
+</nav>
+
+<main>
+
+<header class="hero" id="accueil">
+  <p class="kicker">GS Aimé Césaire · Guide utilisateur</p>
+  <h1>Bien utiliser l'outil de gestion scolaire</h1>
+  <p>Inscriptions, fiches élèves, paiements, emplois du temps, notes, bulletins et cours de la semaine : tout est réuni au même endroit, à jour pour toute l'équipe. Ce guide présente chaque écran, profil par profil.</p>
+  <div class="hero-facts">
+    <span>Adresse : <a href="https://gest-scol.fr">gest-scol.fr</a></span>
+    <span>Ordinateur, tablette ou téléphone</span>
+    <span>Rien à installer</span>
+  </div>
+</header>
+
+<!-- =============================== Connexion =============================== -->
+<section class="chapter" id="connexion">
+  <div class="chapter-head">
+    <h2>Se connecter</h2>
+    <p>Chaque membre de l'équipe a son propre compte, créé par la direction.</p>
+  </div>
+  <ol class="steps">
+    <li>Ouvrez <a href="https://gest-scol.fr">https://gest-scol.fr</a> dans le navigateur (Chrome, Safari, Edge, Firefox).</li>
+    <li>Saisissez votre <strong>identifiant</strong> et votre <strong>mot de passe</strong>, puis <span class="btn">Se connecter</span>.</li>
+    <li>Pour partir, touchez la flèche de déconnexion en bas du menu (sur téléphone : <span class="btn">Plus</span> puis <span class="btn">Déconnexion</span>).</li>
+  </ol>
+  <figure>
+    <a href="guide-utilisateur-assets/01-connexion.jpg"><img src="guide-utilisateur-assets/01-connexion.jpg" alt="Écran de connexion" loading="lazy"></a>
+    <figcaption>L'écran de connexion.</figcaption>
+  </figure>
+  <div class="warn">
+    <strong>Votre compte est personnel</strong>
+    <p>Ne prêtez pas votre identifiant : chaque note et chaque paiement est enregistré au nom de la personne connectée. Sur un ordinateur partagé, déconnectez-vous en partant.</p>
+  </div>
+  <div class="note">
+    <strong>Mot de passe oublié ?</strong>
+    <p>Demandez à la direction : elle vous en donne un nouveau depuis l'écran <a href="#utilisateurs">Utilisateurs</a>.</p>
+  </div>
+</section>
+
+<!-- =============================== Rôles =============================== -->
+<section class="chapter" id="roles">
+  <div class="chapter-head">
+    <h2>Qui peut faire quoi</h2>
+    <p>Le rôle du compte décide des menus visibles et de ce qu'on peut modifier.</p>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Écran</th><th class="c">Direction</th><th class="c">Secrétariat</th><th class="c">Enseignant</th></tr></thead>
+      <tbody>
+        <tr><td>Tableau de bord</td><td class="c yes">Complet</td><td class="c yes">Oui</td><td class="c yes">Le sien</td></tr>
+        <tr><td>Élèves : consulter les fiches</td><td class="c yes">Oui</td><td class="c yes">Oui</td><td class="c yes">Oui</td></tr>
+        <tr><td>Élèves : inscrire, modifier, transférer, archiver</td><td class="c yes">Oui</td><td class="c yes">Oui</td><td class="c no">—</td></tr>
+        <tr><td>Paiements : enregistrer, imprimer un reçu</td><td class="c yes">Oui</td><td class="c yes">Oui</td><td class="c no">—</td></tr>
+        <tr><td>Situation financière, retards, taux de recouvrement</td><td class="c yes">Oui</td><td class="c no">—</td><td class="c no">—</td></tr>
+        <tr><td>Emploi du temps : modifier</td><td class="c yes">Oui</td><td class="c yes">Oui</td><td class="c part">Sa classe (instructeur principal)</td></tr>
+        <tr><td>Notes : saisir et corriger</td><td class="c yes">Oui</td><td class="c yes">Oui</td><td class="c part">Ses matières (toute sa classe en maternelle et primaire)</td></tr>
+        <tr><td>Bulletins et certificats de scolarité</td><td class="c yes">Oui</td><td class="c yes">Oui</td><td class="c no">—</td></tr>
+        <tr><td>Ressources : consulter</td><td class="c yes">Oui</td><td class="c yes">Oui</td><td class="c yes">Oui</td></tr>
+        <tr><td>Ressources : ajouter des documents</td><td class="c yes">Oui</td><td class="c no">—</td><td class="c no">—</td></tr>
+        <tr><td>Classes, Matières, Import / Export</td><td class="c yes">Oui</td><td class="c yes">Oui</td><td class="c no">—</td></tr>
+        <tr><td>Utilisateurs, Nouvelle rentrée, Sauvegarde, périodes</td><td class="c yes">Oui</td><td class="c no">—</td><td class="c no">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Dans ce guide, chaque partie rappelle les profils concernés :
+    <span class="role dir">Direction</span> <span class="role sec">Secrétariat</span> <span class="role ens">Enseignant</span>.</p>
+</section>
+
+<!-- =============================== Repères =============================== -->
+<section class="chapter" id="reperes">
+  <div class="chapter-head">
+    <h2>Se repérer dans l'outil</h2>
+    <p>Un menu à gauche, l'écran au centre, l'aide toujours à portée de main.</p>
+  </div>
+  <ul>
+    <li><strong>Le menu de gauche</strong> est rangé en trois groupes : <em>Au quotidien</em> (Élèves, Emploi du temps, Notes, Ressources), <em>Paramétrage</em> (Classes, Matières, Utilisateurs, Rentrée) et <em>Données</em> (Import / Export, Sauvegarde). Chacun ne voit que les menus utiles à son rôle.</li>
+    <li><strong>En haut à droite</strong>, l'année scolaire en cours (pastille verte).</li>
+    <li><strong>Le bouton <span class="btn">?</span></strong> explique l'écran ouvert en quelques étapes. L'interrupteur <strong>Aide</strong> à côté affiche cette explication automatiquement à chaque nouvel écran : pratique les premiers jours, à couper ensuite.</li>
+    <li><strong>Les confirmations</strong> (« Paiement enregistré », « Notes enregistrées »…) apparaissent dans une pastille en bas de l'écran puis disparaissent seules.</li>
+    <li><strong>Les documents</strong> (PDF, guide) s'ouvrent dans un nouvel onglet : l'outil reste ouvert derrière.</li>
+  </ul>
+  <figure>
+    <a href="guide-utilisateur-assets/04-aide.jpg"><img src="guide-utilisateur-assets/04-aide.jpg" alt="Fenêtre d'aide du tableau de bord" loading="lazy"></a>
+    <figcaption>Le bouton « ? » ouvre l'aide de l'écran.</figcaption>
+  </figure>
+</section>
+
+<!-- =============================== Tableau de bord =============================== -->
+<section class="chapter" id="tableau-de-bord">
+  <div class="chapter-head">
+    <h2>Tableau de bord</h2>
+    <p>Le premier écran après la connexion : l'essentiel de la journée.</p>
+    <div class="roles"><span class="role dir">Direction</span><span class="role sec">Secrétariat</span><span class="role ens">Enseignant</span></div>
+  </div>
+
+  <h3>Direction</h3>
+  <ul>
+    <li><strong>Les chiffres clés</strong> : encaissé depuis la rentrée, retards de paiement, taux de recouvrement (calculé sur ce qui est dû à ce jour) et élèves inscrits. Touchez un chiffre pour ouvrir la liste correspondante.</li>
+    <li><strong>À faire</strong> : ce qui demande une action (retards de paiement, notes manquantes, classe sans emploi du temps, documents de la semaine manquants…). Le bouton de chaque ligne ouvre le bon écran, sur la bonne classe.</li>
+    <li><strong>Caisse du jour</strong> : les paiements saisis aujourd'hui, par qui et comment, avec l'export Excel. « À vérifier » signale une correction ou une date de paiement modifiée.</li>
+    <li><strong>Par classe</strong> : une ligne par classe avec l'instructeur principal, les élèves, l'avancement des notes de la période, la moyenne, les élèves sous la moyenne, les retards et les fiches à compléter. Touchez une classe pour voir ses élèves.</li>
+    <li>En bas de page : la date de la dernière sauvegarde.</li>
+  </ul>
+  <figure>
+    <a href="guide-utilisateur-assets/02-tableau-de-bord.jpg"><img src="guide-utilisateur-assets/02-tableau-de-bord.jpg" alt="Tableau de bord de la direction" loading="lazy"></a>
+    <figcaption>Le tableau de bord de la direction : chiffres clés, À faire, Caisse du jour.</figcaption>
+  </figure>
+  <figure>
+    <a href="guide-utilisateur-assets/03-tableau-de-bord-par-classe.jpg"><img src="guide-utilisateur-assets/03-tableau-de-bord-par-classe.jpg" alt="Tableau Par classe" loading="lazy"></a>
+    <figcaption>Plus bas, le tableau « Par classe ».</figcaption>
+  </figure>
+  <div class="tip">
+    <strong>« À régler » ou « en retard » ?</strong>
+    <p>Une échéance non payée est « à régler » pendant 15 jours, puis passe « en retard ». Pour un élève inscrit en cours d'année, le délai part de sa date d'inscription.</p>
+  </div>
+
+  <h3>Secrétariat</h3>
+  <p>Mêmes blocs, sans les montants : élèves inscrits, fiches à compléter, notes de la période, « À faire » et « Par classe ».</p>
+
+  <h3>Enseignant</h3>
+  <ul>
+    <li><strong>Aujourd'hui</strong> : vos cours du jour (ou du prochain jour de cours), avec le cours en cours mis en avant.</li>
+    <li><strong>À faire</strong> : les notes à saisir ou à compléter dans vos matières, la composition avant la fin du trimestre.</li>
+    <li><strong>Mes classes</strong> : la moyenne de la période dans vos matières et le nombre d'élèves en difficulté.</li>
+    <li><strong>Ressources de la semaine</strong> : les cours de la semaine pour vos classes, à ouvrir d'un geste.</li>
+  </ul>
+  <figure>
+    <a href="guide-utilisateur-assets/23-enseignant-tableau-de-bord.jpg"><img src="guide-utilisateur-assets/23-enseignant-tableau-de-bord.jpg" alt="Tableau de bord d'un enseignant" loading="lazy"></a>
+    <figcaption>Le tableau de bord d'un enseignant : sa journée et ce qui reste à faire.</figcaption>
+  </figure>
+</section>
+
+<!-- =============================== Élèves =============================== -->
+<section class="chapter" id="eleves">
+  <div class="chapter-head">
+    <h2>Élèves et fiche élève</h2>
+    <p>La liste de tous les élèves et, pour chacun, une fiche complète.</p>
+    <div class="roles"><span class="role dir">Direction</span><span class="role sec">Secrétariat</span><span class="role ens">Enseignant (consultation)</span></div>
+  </div>
+
+  <h3>Trouver un élève</h3>
+  <ul>
+    <li>Tapez un nom, un prénom, un matricule ou une classe dans la recherche : la liste se met à jour à chaque lettre.</li>
+    <li>Affinez avec les filtres : classe, situation de paiement (direction), complétude de la fiche, élèves actifs, anciens ou archivés.</li>
+    <li>Touchez la ligne d'un élève pour ouvrir sa fiche.</li>
+  </ul>
+  <figure>
+    <a href="guide-utilisateur-assets/05-eleves.jpg"><img src="guide-utilisateur-assets/05-eleves.jpg" alt="Liste des élèves" loading="lazy"></a>
+    <figcaption>La liste des élèves, avec la recherche et les filtres sur une ligne.</figcaption>
+  </figure>
+
+  <h3>Inscrire un élève <span class="role dir">Direction</span> <span class="role sec">Secrétariat</span></h3>
+  <ol class="steps">
+    <li>Touchez <span class="btn">+ Nouvel élève</span>.</li>
+    <li>Remplissez les blocs Identité, Famille et contacts, Scolarité (la classe), puis <span class="btn">Enregistrer</span>.</li>
+    <li>Une fiche incomplète affiche « Fiche à compléter » avec la liste de ce qui manque : touchez <span class="btn">Compléter la fiche</span> quand vous avez les informations.</li>
+  </ol>
+  <p>Pour inscrire beaucoup d'élèves d'un coup, utilisez l'<a href="#import-export">import Excel</a>.</p>
+
+  <h3>La fiche élève</h3>
+  <p>En haut, l'élève (classe, matricule, âge, parent et téléphone à toucher pour appeler) et les actions :</p>
+  <ul>
+    <li><span class="btn">Imprimer la fiche</span> : la fiche sur papier.</li>
+    <li><span class="btn">Certificat de scolarité</span> : le certificat de l'école, sur une page A4, prêt à signer.</li>
+    <li>Choix de la période puis <span class="btn">Bulletin</span> : le bulletin de l'élève pour ce trimestre ou ce semestre.</li>
+    <li><span class="btn">Transférer</span> : changer l'élève de classe.</li>
+  </ul>
+  <p>Puis les onglets :</p>
+  <ul>
+    <li><strong>Identité</strong> : la fiche en lecture, rangée en blocs (Identité, Famille et contacts, Scolarité, Notes internes).</li>
+    <li><strong>Notes</strong> : moyenne générale, rang dans la classe, moyennes par matière comparées à la classe, pour chaque période (pas en maternelle).</li>
+    <li><strong>Finances</strong> (direction) ou <strong>Paiements</strong> (secrétariat) : voir <a href="#paiements">Paiements</a>.</li>
+    <li><strong>Suivi</strong> : commentaires internes sur l'élève (comportement, rendez-vous avec les parents…). Les enseignants peuvent en ajouter.</li>
+    <li><strong>Historique</strong> : les années passées de l'élève.</li>
+  </ul>
+  <figure>
+    <a href="guide-utilisateur-assets/06-fiche-identite.jpg"><img src="guide-utilisateur-assets/06-fiche-identite.jpg" alt="Fiche élève, onglet Identité" loading="lazy"></a>
+    <figcaption>La fiche élève, onglet Identité.</figcaption>
+  </figure>
+  <figure>
+    <a href="guide-utilisateur-assets/07-fiche-notes.jpg"><img src="guide-utilisateur-assets/07-fiche-notes.jpg" alt="Fiche élève, onglet Notes" loading="lazy"></a>
+    <figcaption>Onglet Notes : la barre montre la moyenne de l'élève, le trait celle de la classe.</figcaption>
+  </figure>
+
+  <h3>Modifier une fiche <span class="role dir">Direction</span> <span class="role sec">Secrétariat</span></h3>
+  <ol class="steps">
+    <li>Dans l'onglet Identité, touchez <span class="btn">Modifier la fiche</span>.</li>
+    <li>Corrigez les champs (les blocs sont les mêmes qu'en lecture), ajoutez une photo si besoin.</li>
+    <li><span class="btn">Enregistrer</span>, ou <span class="btn">Annuler</span> pour revenir sans rien changer.</li>
+  </ol>
+  <p>Le champ « Appréciation pour le bulletin » est imprimé sur le bulletin. « Archiver l'élève » (en bas, à l'écart) le retire des listes actives sans rien effacer.</p>
+  <figure>
+    <a href="guide-utilisateur-assets/09-fiche-modifier.jpg"><img src="guide-utilisateur-assets/09-fiche-modifier.jpg" alt="Fiche élève en modification" loading="lazy"></a>
+    <figcaption>La fiche en modification.</figcaption>
+  </figure>
+</section>
+
+<!-- =============================== Paiements =============================== -->
+<section class="chapter" id="paiements">
+  <div class="chapter-head">
+    <h2>Paiements</h2>
+    <p>Inscription et scolarité, tranche par tranche, avec reçu imprimable.</p>
+    <div class="roles"><span class="role dir">Direction</span><span class="role sec">Secrétariat</span></div>
+  </div>
+  <ol class="steps">
+    <li>Ouvrez la fiche de l'élève, onglet <strong>Finances</strong> (direction) ou <strong>Paiements</strong> (secrétariat).</li>
+    <li>Touchez <span class="btn">+ Ajouter un paiement</span> : montant, date, mode (espèces, mobile money, virement bancaire, chèque, autre), puis enregistrez.</li>
+    <li>Touchez <span class="btn">Reçu</span> sur la ligne du paiement pour imprimer le reçu à remettre à la famille.</li>
+  </ol>
+  <p>La direction voit en plus la <strong>situation financière</strong> : ce qui est dû (inscription et scolarité selon la classe), ce qui est exigible à ce jour, ce qui est payé, le solde et le statut « à jour », « à régler » ou « en retard ».</p>
+  <figure>
+    <a href="guide-utilisateur-assets/08-fiche-finances.jpg"><img src="guide-utilisateur-assets/08-fiche-finances.jpg" alt="Onglet Finances de la fiche élève" loading="lazy"></a>
+    <figcaption>Onglet Finances : situation financière puis liste des paiements.</figcaption>
+  </figure>
+  <div class="note">
+    <strong>Paiements de septembre</strong>
+    <p>Un paiement daté à partir du 1er août compte pour la nouvelle année scolaire, même avant la « Nouvelle rentrée ». Saisissez toujours la date réelle du paiement.</p>
+  </div>
+</section>
+
+<!-- =============================== Emploi du temps =============================== -->
+<section class="chapter" id="emploi-du-temps">
+  <div class="chapter-head">
+    <h2>Emploi du temps</h2>
+    <p>La semaine de chaque classe, et celle de chaque enseignant.</p>
+    <div class="roles"><span class="role dir">Direction</span><span class="role sec">Secrétariat</span><span class="role ens">Enseignant</span></div>
+  </div>
+  <ul>
+    <li><strong>Par classe</strong> : choisissez la classe en haut. Chaque matière a sa couleur ; la récréation est hachurée.</li>
+    <li><strong>Par enseignant</strong> (direction, secrétariat) ou <strong>Mon emploi du temps</strong> (enseignant) : toutes les classes d'un enseignant sur la semaine.</li>
+    <li>À droite, <strong>Heures par matière</strong> : ce qui est placé dans la semaine, et le contrôle des conflits.</li>
+  </ul>
+  <figure>
+    <a href="guide-utilisateur-assets/10-emploi-du-temps.jpg"><img src="guide-utilisateur-assets/10-emploi-du-temps.jpg" alt="Emploi du temps d'une classe" loading="lazy"></a>
+    <figcaption>La semaine d'une classe.</figcaption>
+  </figure>
+
+  <h3>Ajouter ou modifier un cours <span class="role dir">Direction</span> <span class="role sec">Secrétariat</span> <span class="role ens">Instructeur principal</span></h3>
+  <ol class="steps">
+    <li>Touchez un cours pour le modifier, ou un espace libre de la grille pour ajouter un cours à cette heure.</li>
+    <li>Réglez le jour, l'heure de début et de fin, la matière (ou « Récréation ») et l'enseignant.</li>
+    <li>« Répéter aussi le » place le même cours sur d'autres jours d'un coup.</li>
+    <li><span class="btn">Enregistrer</span> : c'est pris en compte tout de suite. <span class="btn">Supprimer ce cours</span> pour le retirer.</li>
+  </ol>
+  <figure>
+    <a href="guide-utilisateur-assets/11-emploi-du-temps-modifier.jpg"><img src="guide-utilisateur-assets/11-emploi-du-temps-modifier.jpg" alt="Modification d'un cours" loading="lazy"></a>
+    <figcaption>Le panneau de modification d'un cours.</figcaption>
+  </figure>
+  <div class="tip">
+    <strong>Pas de double réservation</strong>
+    <p>Si l'enseignant a déjà cours ailleurs à cette heure, l'outil le signale et propose les enseignants libres.</p>
+  </div>
+  <p><span class="btn">Copier la semaine d'une autre classe</span> sert de point de départ pour une classe du même niveau. <span class="btn">Imprimer</span> donne la semaine sur une page A4 à afficher.</p>
+</section>
+
+<!-- =============================== Notes =============================== -->
+<section class="chapter" id="notes">
+  <div class="chapter-head">
+    <h2>Notes et bulletins</h2>
+    <p>Saisir les évaluations, suivre les moyennes, imprimer les bulletins.</p>
+    <div class="roles"><span class="role dir">Direction</span><span class="role sec">Secrétariat</span><span class="role ens">Enseignant</span></div>
+  </div>
+  <p>Choisissez toujours d'abord <strong>la classe et la période</strong> en haut de l'écran. La maternelle n'a pas de notes.</p>
+
+  <h3>Saisir une évaluation</h3>
+  <ol class="steps">
+    <li>Onglet <strong>Saisir une évaluation</strong> : choisissez la matière, le type (mensuelle ou composition) et la date. Le barème s'affiche (sur 10 en primaire, sur 20 au collège).</li>
+    <li>Tapez la note de chaque élève puis <kbd>Entrée</kbd> pour passer au suivant. Une case laissée vide = élève non noté.</li>
+    <li>À droite, la moyenne, le minimum et le maximum se calculent au fur et à mesure. Terminez par <span class="btn">Enregistrer</span>.</li>
+  </ol>
+  <figure>
+    <a href="guide-utilisateur-assets/12-notes-saisie.jpg"><img src="guide-utilisateur-assets/12-notes-saisie.jpg" alt="Saisie d'une évaluation" loading="lazy"></a>
+    <figcaption>La saisie : les notes déjà obtenues ce trimestre sont rappelées à côté.</figcaption>
+  </figure>
+
+  <h3>Carnet de notes</h3>
+  <p>Toutes les notes d'une matière pour la période, élève par élève. Touchez une note pour la corriger ou la supprimer.</p>
+  <figure>
+    <a href="guide-utilisateur-assets/13-notes-carnet.jpg"><img src="guide-utilisateur-assets/13-notes-carnet.jpg" alt="Carnet de notes" loading="lazy"></a>
+    <figcaption>Le carnet de notes d'une matière.</figcaption>
+  </figure>
+
+  <h3>Moyennes et bulletins</h3>
+  <ul>
+    <li>Le classement de la classe avec la moyenne générale et la moyenne de chaque matière (flèches pour faire défiler les matières).</li>
+    <li><span class="btn">Imprimer les bulletins</span> : tous les bulletins de la classe d'un coup, un par page A4 <span class="role dir">Direction</span> <span class="role sec">Secrétariat</span></li>
+    <li><span class="btn">Exporter (Excel)</span> : le tableau des moyennes.</li>
+  </ul>
+  <div class="legend">
+    <span><i class="dot" style="background:#e2763b"></i>moins de la moitié du barème</span>
+    <span><i class="dot" style="background:#9aa6bb"></i>moins de 70 %</span>
+    <span><i class="dot" style="background:#2457d6"></i>70 % et plus</span>
+  </div>
+  <figure>
+    <a href="guide-utilisateur-assets/14-notes-moyennes.jpg"><img src="guide-utilisateur-assets/14-notes-moyennes.jpg" alt="Moyennes et bulletins" loading="lazy"></a>
+    <figcaption>Moyennes et bulletins : chiffres de la classe, répartition, classement.</figcaption>
+  </figure>
+
+  <h3>Périodes <span class="role dir">Direction</span></h3>
+  <p>Les trimestres (maternelle et primaire) et semestres (collège) avec leurs dates. <span class="btn">Fermer</span> une période bloque la saisie une fois les bulletins faits ; <span class="btn">Dates</span> pour les ajuster.</p>
+  <figure>
+    <a href="guide-utilisateur-assets/15-notes-periodes.jpg"><img src="guide-utilisateur-assets/15-notes-periodes.jpg" alt="Périodes" loading="lazy"></a>
+    <figcaption>Les périodes de l'année.</figcaption>
+  </figure>
+</section>
+
+<!-- =============================== Ressources =============================== -->
+<section class="chapter" id="ressources">
+  <div class="chapter-head">
+    <h2>Ressources pédagogiques</h2>
+    <p>Les programmes, cours et corrigés de chaque classe, semaine par semaine.</p>
+    <div class="roles"><span class="role dir">Direction</span><span class="role sec">Secrétariat</span><span class="role ens">Enseignant</span></div>
+  </div>
+  <ol class="steps">
+    <li>Choisissez la classe, puis la matière.</li>
+    <li><strong>Cette semaine</strong> montre le document de la semaine en cours ; la grille <strong>Toutes les semaines</strong> ouvre les autres (en violet : la semaine en cours ; en pointillés : pas encore de document).</li>
+    <li><span class="btn">Ouvrir</span> affiche le PDF dans un nouvel onglet, prêt à lire ou à imprimer.</li>
+  </ol>
+  <p>Plus bas : le <strong>programme de l'année</strong> et <strong>Divers</strong> (documents utiles à toute la classe).</p>
+  <figure>
+    <a href="guide-utilisateur-assets/16-ressources.jpg"><img src="guide-utilisateur-assets/16-ressources.jpg" alt="Ressources pédagogiques" loading="lazy"></a>
+    <figcaption>Les ressources d'une classe.</figcaption>
+  </figure>
+  <h3>Ajouter des documents <span class="role dir">Direction</span></h3>
+  <p><span class="btn">+ Ajouter des documents</span> : cochez les classes concernées, choisissez la matière et les PDF. La semaine est reconnue grâce au mot « Semaine » suivi du numéro dans le nom du fichier (par exemple <em>Francais_Semaine12.pdf</em>). Sur chaque document : Modifier, Remplacer le PDF ou Retirer.</p>
+</section>
+
+<!-- =============================== Classes =============================== -->
+<section class="chapter" id="classes">
+  <div class="chapter-head">
+    <h2>Classes</h2>
+    <p>Les classes de l'école, rangées par cycle.</p>
+    <div class="roles"><span class="role dir">Direction</span><span class="role sec">Secrétariat</span></div>
+  </div>
+  <ul>
+    <li>L'<strong>instructeur principal</strong> se choisit directement dans la liste : c'est enregistré tout de suite.</li>
+    <li>Touchez le nombre d'élèves, de matières ou d'heures pour ouvrir l'écran concerné sur cette classe. Ce qui manque est signalé en orange.</li>
+    <li><span class="btn">+ Nouvelle classe</span> : nom et cycle. <span class="btn">Modifier</span> : nom, cycle, archivage. Une classe qui a encore des élèves ne peut pas être archivée.</li>
+  </ul>
+  <figure>
+    <a href="guide-utilisateur-assets/17-classes.jpg"><img src="guide-utilisateur-assets/17-classes.jpg" alt="Écran Classes" loading="lazy"></a>
+    <figcaption>Les classes, avec instructeur principal, élèves, matières et heures.</figcaption>
+  </figure>
+</section>
+
+<!-- =============================== Matières =============================== -->
+<section class="chapter" id="matieres">
+  <div class="chapter-head">
+    <h2>Matières</h2>
+    <p>Les matières de l'école et leur affectation aux classes.</p>
+    <div class="roles"><span class="role dir">Direction</span><span class="role sec">Secrétariat</span></div>
+  </div>
+  <ul>
+    <li><strong>Référentiel</strong> : la liste des matières. <span class="btn">+ Nouvelle matière</span> pour en créer une, <span class="btn">Modifier</span> pour la renommer ou l'archiver.</li>
+    <li><strong>Affectations par classe</strong> : choisissez la classe, puis changez directement le coefficient, l'enseignant ou les heures par semaine (enregistré aussitôt).</li>
+    <li>Une classe en orange n'a aucune matière : cochez-en, ou copiez celles d'une autre classe.</li>
+    <li>Une matière qui a déjà des notes ne peut pas être retirée de la classe.</li>
+  </ul>
+  <figure>
+    <a href="guide-utilisateur-assets/18-matieres.jpg"><img src="guide-utilisateur-assets/18-matieres.jpg" alt="Affectations des matières par classe" loading="lazy"></a>
+    <figcaption>Les matières d'une classe : coefficient, enseignant, heures par semaine.</figcaption>
+  </figure>
+</section>
+
+<!-- =============================== Utilisateurs =============================== -->
+<section class="chapter" id="utilisateurs">
+  <div class="chapter-head">
+    <h2>Utilisateurs</h2>
+    <p>Les comptes de connexion de l'équipe, rangés par rôle.</p>
+    <div class="roles"><span class="role dir">Direction</span></div>
+  </div>
+  <ol class="steps">
+    <li><span class="btn">+ Nouvel utilisateur</span> : identifiant (sans espace ni accent, par exemple <em>mdiallo</em>), nom affiché et rôle.</li>
+    <li>Un mot de passe provisoire est proposé (8 caractères minimum ; <span class="btn">Générer</span> en donne un autre). Notez-le et donnez-le à la personne.</li>
+    <li><span class="btn">Créer le compte</span>.</li>
+  </ol>
+  <ul>
+    <li><strong>Mot de passe oublié</strong> : <span class="btn">Mot de passe</span> sur la ligne de la personne, saisissez le nouveau, enregistrez.</li>
+    <li><strong>Départ</strong> : <span class="btn">Modifier</span> puis « Désactiver le compte » (réactivable plus tard). Votre propre compte ne peut pas être désactivé.</li>
+    <li>Pour chaque enseignant, l'écran rappelle ce qu'il fait (instructeur principal de…, matières, heures) et sa dernière connexion.</li>
+  </ul>
+  <figure>
+    <a href="guide-utilisateur-assets/19-utilisateurs.jpg"><img src="guide-utilisateur-assets/19-utilisateurs.jpg" alt="Écran Utilisateurs" loading="lazy"></a>
+    <figcaption>Les comptes, par rôle, avec la dernière connexion.</figcaption>
+  </figure>
+</section>
+
+<!-- =============================== Rentrée =============================== -->
+<section class="chapter" id="rentree">
+  <div class="chapter-head">
+    <h2>Nouvelle rentrée</h2>
+    <p>Une seule fois par an, juste avant la rentrée : chaque élève passe dans sa nouvelle classe.</p>
+    <div class="roles"><span class="role dir">Direction</span></div>
+  </div>
+  <ol class="steps">
+    <li>Créez d'abord les nouvelles classes éventuelles (menu <a href="#classes">Classes</a>).</li>
+    <li>Vérifiez la <strong>Séquence des classes</strong> : pour chaque classe, la colonne « Passe en » doit indiquer la bonne classe suivante.</li>
+    <li><span class="btn">Aperçu de la rentrée</span> : vérifiez élève par élève et changez les redoublants ou les départs.</li>
+    <li><span class="btn">Exécuter</span> : une sauvegarde est faite automatiquement avant ; l'année précédente passe en lecture seule.</li>
+    <li>Ensuite : affectez les matières aux nouvelles classes et vérifiez les périodes et leurs dates.</li>
+  </ol>
+  <figure>
+    <a href="guide-utilisateur-assets/20-rentree.jpg"><img src="guide-utilisateur-assets/20-rentree.jpg" alt="Écran Nouvelle rentrée" loading="lazy"></a>
+    <figcaption>L'écran Nouvelle rentrée.</figcaption>
+  </figure>
+</section>
+
+<!-- =============================== Import / Export =============================== -->
+<section class="chapter" id="import-export">
+  <div class="chapter-head">
+    <h2>Import / Export</h2>
+    <p>Échanger des listes avec Excel.</p>
+    <div class="roles"><span class="role dir">Direction</span><span class="role sec">Secrétariat</span></div>
+  </div>
+  <h3>Importer des élèves</h3>
+  <ol class="steps">
+    <li>Choisissez la classe cible si le fichier n'a pas de colonne « classe », puis le fichier Excel.</li>
+    <li><span class="btn">Analyser avant import</span> : l'outil montre ce qui sera créé et signale les lignes à vérifier.</li>
+    <li>Confirmez l'import une fois les lignes vérifiées.</li>
+  </ol>
+  <h3>Exporter</h3>
+  <p>Élèves actifs, données à compléter, retards de paiement, effectifs par classe, paiements : chaque bouton télécharge un fichier Excel.</p>
+  <figure>
+    <a href="guide-utilisateur-assets/21-import-export.jpg"><img src="guide-utilisateur-assets/21-import-export.jpg" alt="Écran Import / Export" loading="lazy"></a>
+    <figcaption>Import à gauche, exports à droite.</figcaption>
+  </figure>
+</section>
+
+<!-- =============================== Sauvegarde =============================== -->
+<section class="chapter" id="sauvegarde">
+  <div class="chapter-head">
+    <h2>Sauvegarde</h2>
+    <p>Une copie de sécurité de toutes les données.</p>
+    <div class="roles"><span class="role dir">Direction</span></div>
+  </div>
+  <ul>
+    <li>Le serveur sauvegarde <strong>automatiquement chaque nuit</strong> les données et les documents pédagogiques ; l'outil fait en plus sa propre copie chaque jour. La date de la dernière sauvegarde est rappelée en bas du tableau de bord.</li>
+    <li>Avant une opération importante (gros import, nouvelle rentrée), touchez <span class="btn">Créer une sauvegarde</span>.</li>
+  </ul>
+  <figure>
+    <a href="guide-utilisateur-assets/22-sauvegarde.jpg"><img src="guide-utilisateur-assets/22-sauvegarde.jpg" alt="Écran Sauvegarde" loading="lazy"></a>
+    <figcaption>La sauvegarde manuelle.</figcaption>
+  </figure>
+</section>
+
+<!-- =============================== Téléphone =============================== -->
+<section class="chapter" id="telephone">
+  <div class="chapter-head">
+    <h2>Sur téléphone</h2>
+    <p>Le même outil, adapté au pouce.</p>
+    <div class="roles"><span class="role dir">Direction</span><span class="role sec">Secrétariat</span><span class="role ens">Enseignant</span></div>
+  </div>
+  <ul>
+    <li>En bas, la barre <strong>Accueil · Élèves · EDT · Notes · Plus</strong> donne accès aux écrans du quotidien ; <span class="btn">Plus</span> (ou <span class="btn">Menu</span> en haut) ouvre le menu complet.</li>
+    <li>L'emploi du temps s'affiche un jour à la fois : touchez <strong>Lun, Mar, Mer…</strong> pour changer de jour.</li>
+    <li>Astuce : ajoutez l'outil à l'écran d'accueil (Safari : bouton Partager puis « Sur l'écran d'accueil » ; Chrome : menu ⋮ puis « Ajouter à l'écran d'accueil »). Il s'ouvre alors comme une application.</li>
+  </ul>
+  <div class="phones">
+    <figure>
+      <a href="guide-utilisateur-assets/24-telephone-accueil.jpg"><img src="guide-utilisateur-assets/24-telephone-accueil.jpg" alt="Accueil sur téléphone" loading="lazy"></a>
+      <figcaption>L'accueil d'un enseignant.</figcaption>
+    </figure>
+    <figure>
+      <a href="guide-utilisateur-assets/25-telephone-menu.jpg"><img src="guide-utilisateur-assets/25-telephone-menu.jpg" alt="Menu sur téléphone" loading="lazy"></a>
+      <figcaption>Le menu complet (« Plus »).</figcaption>
+    </figure>
+    <figure>
+      <a href="guide-utilisateur-assets/26-telephone-emploi-du-temps.jpg"><img src="guide-utilisateur-assets/26-telephone-emploi-du-temps.jpg" alt="Emploi du temps sur téléphone" loading="lazy"></a>
+      <figcaption>L'emploi du temps, jour par jour.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- =============================== Démarrage =============================== -->
+<section class="chapter" id="demarrage">
+  <div class="chapter-head">
+    <h2>Démarrer l'année</h2>
+    <p>L'ordre conseillé pour la direction, avant le premier jour de classe.</p>
+    <div class="roles"><span class="role dir">Direction</span></div>
+  </div>
+  <ol class="steps">
+    <li><strong>Comptes</strong> : un compte par membre de l'équipe (<a href="#utilisateurs">Utilisateurs</a>), mot de passe personnel remis à chacun.</li>
+    <li><strong>Classes</strong> : vérifier la liste et choisir l'instructeur principal de chaque classe (<a href="#classes">Classes</a>).</li>
+    <li><strong>Matières</strong> : affectations, coefficients, enseignants et heures par classe (<a href="#matieres">Matières</a>).</li>
+    <li><strong>Emplois du temps</strong> : une semaine par classe (<a href="#emploi-du-temps">Emploi du temps</a>).</li>
+    <li><strong>Périodes</strong> : trimestres et semestres avec leurs dates (<a href="#notes">Notes, onglet Périodes</a>).</li>
+    <li><strong>Élèves</strong> : import Excel ou saisie, puis compléter les fiches signalées (<a href="#eleves">Élèves</a>).</li>
+    <li><strong>Paiements</strong> : enregistrer les inscriptions au fil de l'eau (<a href="#paiements">Paiements</a>).</li>
+    <li><strong>Ressources</strong> : déposer les programmes et les cours de la semaine (<a href="#ressources">Ressources</a>).</li>
+  </ol>
+  <p>Le bloc « À faire » du tableau de bord signale ce qui manque encore.</p>
+</section>
+
+<!-- =============================== Dépannage =============================== -->
+<section class="chapter" id="depannage">
+  <div class="chapter-head">
+    <h2>Questions fréquentes</h2>
+  </div>
+  <h3>Je n'arrive pas à me connecter</h3>
+  <p>Vérifiez l'identifiant (sans espace) et le mot de passe (attention aux majuscules). En cas d'oubli, la direction vous en donne un nouveau.</p>
+  <h3>Je ne vois pas un menu</h3>
+  <p>C'est normal : chaque rôle ne voit que ses écrans (voir <a href="#roles">Qui peut faire quoi</a>).</p>
+  <h3>Je ne peux pas saisir de note</h3>
+  <p>La période est peut-être fermée (demandez à la direction), ou la matière n'est pas à votre nom dans l'écran Matières.</p>
+  <h3>Un document ne s'ouvre pas</h3>
+  <p>Si le navigateur bloque le nouvel onglet, un bandeau « Ouvrir le document » apparaît : touchez-le.</p>
+  <h3>L'impression d'un bulletin est mal cadrée</h3>
+  <p>Dans la fenêtre d'impression, choisissez le format A4, l'orientation portrait et l'échelle « Par défaut » (ou 100 %).</p>
+  <h3>J'ai fait une erreur dans une fiche ou une note</h3>
+  <p>Fiche : <span class="btn">Modifier la fiche</span>. Note : onglet Carnet de notes, touchez la note pour la corriger ou la supprimer.</p>
+</section>
+
+<footer>
+  Guide utilisateur de l'outil de gestion scolaire du GS Aimé Césaire — version 2.6, mis à jour le 2 octobre 2026.<br>
+  Les captures d'écran montrent des élèves et des enseignants fictifs.
+</footer>
+
+</main>
+</div>
+
+<script>
+// Sommaire : surligne la partie en cours de lecture (sans effet si le navigateur ne le permet pas)
+(() => {
+  const links = [...document.querySelectorAll(".toc ol a[href^='#']")];
+  // Sur téléphone, le sommaire est replié au départ (il reste ouvert sur ordinateur)
+  if (window.matchMedia("(max-width: 1000px)").matches) document.querySelector(".toc details")?.removeAttribute("open");
+  const sections = links.map((a) => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+  if (!("IntersectionObserver" in window) || !sections.length) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      links.forEach((a) => a.classList.toggle("is-current", a.getAttribute("href") === `#${entry.target.id}`));
+    });
+  }, { rootMargin: "-20% 0px -70% 0px" });
+  sections.forEach((section) => observer.observe(section));
+  // Sur téléphone, le sommaire se replie après un choix
+  links.forEach((a) => a.addEventListener("click", () => {
+    if (window.matchMedia("(max-width: 1000px)").matches) a.closest("details")?.removeAttribute("open");
+  }));
+})();
+</script>
+</body>
 </html>
