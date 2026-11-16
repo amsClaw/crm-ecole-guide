@@ -445,7 +445,7 @@ footer { margin-top: 36px; color: var(--muted); font-size: 13.5px; text-align: c
         <tr><td>Élèves : consulter les fiches</td><td class="c yes">Oui</td><td class="c yes">Oui</td><td class="c yes">Oui</td></tr>
         <tr><td>Élèves : inscrire, modifier, transférer, archiver</td><td class="c yes">Oui</td><td class="c yes">Oui</td><td class="c no">—</td></tr>
         <tr><td>Paiements : enregistrer, imprimer un reçu</td><td class="c yes">Oui</td><td class="c yes">Oui</td><td class="c no">—</td></tr>
-        <tr><td>Situation financière, retards, taux de recouvrement</td><td class="c yes">Oui</td><td class="c no">—</td><td class="c no">—</td></tr>
+        <tr><td>Situation financière : payé, reste à payer, part de l'année payée</td><td class="c yes">Oui</td><td class="c no">—</td><td class="c no">—</td></tr>
         <tr><td>Emploi du temps : modifier</td><td class="c yes">Oui</td><td class="c yes">Oui</td><td class="c part">Sa classe (instructeur principal)</td></tr>
         <tr><td>Notes : saisir et corriger</td><td class="c yes">Oui</td><td class="c yes">Oui</td><td class="c part">Ses matières (toute sa classe en maternelle et primaire)</td></tr>
         <tr><td>Bulletins et certificats de scolarité</td><td class="c yes">Oui</td><td class="c yes">Oui</td><td class="c no">—</td></tr>
@@ -489,10 +489,10 @@ footer { margin-top: 36px; color: var(--muted); font-size: 13.5px; text-align: c
 
   <h3>Direction</h3>
   <ul>
-    <li><strong>Les chiffres clés</strong> : encaissé depuis la rentrée, retards de paiement, taux de recouvrement (calculé sur ce qui est dû à ce jour) et élèves inscrits. Touchez un chiffre pour ouvrir la liste correspondante.</li>
-    <li><strong>À faire</strong> : ce qui demande une action (retards de paiement, notes manquantes, classe sans emploi du temps, documents de la semaine manquants…). Le bouton de chaque ligne ouvre le bon écran, sur la bonne classe.</li>
+    <li><strong>Les chiffres clés</strong> : encaissé depuis la rentrée, reste à payer, part de l'année payée et élèves inscrits. Touchez un chiffre pour ouvrir la liste correspondante.</li>
+    <li><strong>À faire</strong> : ce qui demande une action (élèves avec un reste à payer, notes manquantes, classe sans emploi du temps, documents de la semaine manquants…). Le bouton de chaque ligne ouvre le bon écran, sur la bonne classe.</li>
     <li><strong>Caisse du jour</strong> : les paiements saisis aujourd'hui, par qui et comment, avec l'export Excel. « À vérifier » signale une correction ou une date de paiement modifiée.</li>
-    <li><strong>Par classe</strong> : une ligne par classe avec l'instructeur principal, les élèves, l'avancement des notes de la période, la moyenne, les élèves sous la moyenne, les retards et les fiches à compléter. Touchez une classe pour voir ses élèves.</li>
+    <li><strong>Par classe</strong> : une ligne par classe avec l'instructeur principal, les élèves, l'avancement des notes de la période, la moyenne, les élèves sous la moyenne, les restes à payer et les fiches à compléter. Touchez une classe pour voir ses élèves.</li>
     <li>En bas de page : la date de la dernière sauvegarde.</li>
   </ul>
   <figure>
@@ -504,8 +504,8 @@ footer { margin-top: 36px; color: var(--muted); font-size: 13.5px; text-align: c
     <figcaption>Plus bas, le tableau « Par classe ».</figcaption>
   </figure>
   <div class="tip">
-    <strong>« À régler » ou « en retard » ?</strong>
-    <p>Une échéance non payée est « à régler » pendant 15 jours, puis passe « en retard ». Pour un élève inscrit en cours d'année, le délai part de sa date d'inscription.</p>
+    <strong>Pas d'échéance</strong>
+    <p>Les familles paient selon leurs moyens : l'outil ne fixe pas de date de paiement. Chaque élève est « soldé » ou a un « reste à payer » sur l'année.</p>
   </div>
 
   <h3>Secrétariat</h3>
@@ -593,7 +593,7 @@ footer { margin-top: 36px; color: var(--muted); font-size: 13.5px; text-align: c
 <section class="chapter" id="paiements">
   <div class="chapter-head">
     <h2>Paiements</h2>
-    <p>Inscription et scolarité, tranche par tranche, avec reçu imprimable.</p>
+    <p>Inscription et scolarité, versement par versement, avec reçu imprimable.</p>
     <div class="roles"><span class="role dir">Direction</span><span class="role sec">Secrétariat</span></div>
   </div>
   <ol class="steps">
@@ -601,7 +601,7 @@ footer { margin-top: 36px; color: var(--muted); font-size: 13.5px; text-align: c
     <li>Touchez <span class="btn">+ Ajouter un paiement</span> : montant, date, mode (espèces, mobile money, virement bancaire, chèque, autre), puis enregistrez.</li>
     <li>Touchez <span class="btn">Reçu</span> sur la ligne du paiement pour imprimer le reçu à remettre à la famille.</li>
   </ol>
-  <p>La direction voit en plus la <strong>situation financière</strong> : ce qui est dû (inscription et scolarité selon la classe), ce qui est exigible à ce jour, ce qui est payé, le solde et le statut « à jour », « à régler » ou « en retard ».</p>
+  <p>La direction voit en plus la <strong>situation financière</strong> : le total de l'année (inscription et scolarité selon la classe, moins une éventuelle prise en charge), ce qui est payé, ce qui reste à payer et la part de l'année payée, avec le statut « soldé » ou « reste à payer ».</p>
   <figure>
     <a href="guide-utilisateur-assets/08-fiche-finances.jpg"><img src="guide-utilisateur-assets/08-fiche-finances.jpg" alt="Onglet Finances de la fiche élève" loading="lazy"></a>
     <figcaption>Onglet Finances : situation financière puis liste des paiements.</figcaption>
@@ -813,7 +813,7 @@ footer { margin-top: 36px; color: var(--muted); font-size: 13.5px; text-align: c
     <li>Confirmez l'import une fois les lignes vérifiées.</li>
   </ol>
   <h3>Exporter</h3>
-  <p>Élèves actifs, données à compléter, retards de paiement, effectifs par classe, paiements : chaque bouton télécharge un fichier Excel.</p>
+  <p>Élèves actifs, données à compléter, restes à payer, effectifs par classe, paiements : chaque bouton télécharge un fichier Excel.</p>
   <figure>
     <a href="guide-utilisateur-assets/21-import-export.jpg"><img src="guide-utilisateur-assets/21-import-export.jpg" alt="Écran Import / Export" loading="lazy"></a>
     <figcaption>Import à gauche, exports à droite.</figcaption>
